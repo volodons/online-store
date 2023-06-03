@@ -10,19 +10,38 @@
     <script src="./scripts/index.js" type="module"></script>
   </head>
   <body>
-    <section>
-      <header>
-        <a href="#">Home</a>
-        <a href="./pages/products.html">Products</a>
-        <a href="./pages/about-us.html">About Us</a>
-        <h1>Comfy</h1>
-        <button type="button"></button>
-      </header>
-      <h2>Rest, Relax, Unwind</h2>
-      <p>Embrace your choices - we do</p>
-      <a href="./pages/products.html">SHOW NOW</a>
-    </section>
-    <section>
+    <header class="header">
+      <section class="header__nav">
+        <nav>
+          <ul class="nav-list">
+            <li><a class="nav-list__link" href="#">Home</a></li>
+            <li>
+              <a class="nav-list__link" href="./pages/products.html"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a class="nav-list__link" href="./pages/about-us.html"
+                >About Us</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <h1 class="heading-custom">Comfy</h1>
+        <button
+          class="shop-cart-button shop-cart-button--white"
+          type="button"
+        ></button>
+      </section>
+      <section>
+        <h2 class="heading-custom heading-custom--large">
+          Rest, Relax, Unwind
+        </h2>
+        <p class="header__paragraph">Embrace your choices - we do</p>
+        <a class="button-link" href="./pages/products.html">SHOW NOW</a>
+      </section>
+    </header>
+    <section class="featured-section">
       <h2><span>/</span>Featured</h2>
       <article>
         <img
