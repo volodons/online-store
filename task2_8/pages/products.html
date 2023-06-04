@@ -10,147 +10,180 @@
     <script src="../scripts/index.js" type="module"></script>
   </head>
   <body>
-    <header>
-      <a href="../index.html">Home</a>
-      <a href="#">Products</a>
-      <a href="./about-us.html">About Us</a>
-      <h1>Comfy</h1>
-      <button type="button"></button>
-    </header>
-    <section>
-      <a href="../index.html">Home</a>
+    <section class="header">
+      <header class="header__nav">
+        <nav>
+          <ul class="nav-list">
+            <li><a class="nav-list__link" href="../index.html">Home</a></li>
+            <li>
+              <a class="nav-list__link" href="#">Products</a>
+            </li>
+            <li>
+              <a class="nav-list__link" href="./about-us.html">About Us</a>
+            </li>
+          </ul>
+        </nav>
+        <h1 class="heading-custom">Comfy</h1>
+        <button
+          class="shop-cart-button shop-cart-button--black"
+          type="button"
+        ></button>
+      </header>
+    </section>
+    <section class="nav">
+      <a class="nav-list__link" href="../index.html">Home</a>
       <span>/</span>
-      <a href="./about-us.html">About Us</a>
+      <a class="nav-list__link" href="#">About Us</a>
     </section>
-    <section>
-      <form id="searchForm" action="#">
+    <section class="filters-products-wrapper">
+      <section class="filters-section">
+        <form id="searchForm" action="#">
+          <input
+            class="search-filter"
+            type="text"
+            name="searchForm"
+            id="searchForm"
+            placeholder="Search..."
+          />
+        </form>
+        <p class="companies-filter-heading">Company</p>
+        <section class="companies-filter-buttons">
+          <button id="buttonAllCompanies" class="companies-filter-button">
+            All
+          </button>
+          <button id="buttonCompanyIkea" class="companies-filter-button">
+            Ikea
+          </button>
+          <button id="buttonCompanyMarcos" class="companies-filter-button">
+            Marcos
+          </button>
+          <button id="buttonCompanyCaressa" class="companies-filter-button">
+            Caressa
+          </button>
+          <button id="buttonCompanyLiddy" class="companies-filter-button">
+            Liddy
+          </button>
+        </section>
+        <p class="price-filter-heading">Price</p>
         <input
-          type="text"
-          name="searchForm"
-          id="searchForm"
-          placeholder="Search..."
+          type="range"
+          name="rangePrice"
+          id="rangePrice"
+          class="price-filter-range"
         />
-      </form>
-      <p>Company</p>
-      <button id="buttonAllCompanies">All</button>
-      <button id="buttonCompanyIkea">Ikea</button>
-      <button id="buttonCompanyMarcos">Marcos</button>
-      <button id="buttonCompanyCaressa">Caressa</button>
-      <button id="buttonCompanyLiddy">Liddy</button>
-      <p>Price</p>
-      <input type="range" name="rangePrice" id="rangePrice" />
-      <p>Value : <span>$80</span></p>
+        <p class="price-filter-description">Value : <span>$80</span></p>
+      </section>
+      <main>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>High-Back Bench</h2>
+          <p>$9.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Albany Table</h2>
+          <p>$79.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Accent Chair</h2>
+          <p>$25.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Wooden Table</h2>
+          <p>$45.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Dining Table</h2>
+          <p>$6.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Sofa Set</h2>
+          <p>$69.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Modern Bookshelf</h2>
+          <p>$8.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Emperor Bed</h2>
+          <p>$21.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Utopia Sofa</h2>
+          <p>$39.95</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Entertainment Center</h2>
+          <p>$29.98</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Albany Sectional</h2>
+          <p>$10.99</p>
+        </article>
+        <article>
+          <img
+            src="../images/template-image.jpg"
+            alt="Template Image"
+            title="Template Image"
+          />
+          <h2>Leather Sofa</h2>
+          <p>$9.99</p>
+        </article>
+      </main>
     </section>
-    <main>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>High-Back Bench</h2>
-        <p>$9.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Albany Table</h2>
-        <p>$79.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Accent Chair</h2>
-        <p>$25.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Wooden Table</h2>
-        <p>$45.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Dining Table</h2>
-        <p>$6.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Sofa Set</h2>
-        <p>$69.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Modern Bookshelf</h2>
-        <p>$8.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Emperor Bed</h2>
-        <p>$21.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Utopia Sofa</h2>
-        <p>$39.95</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Entertainment Center</h2>
-        <p>$29.98</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Albany Sectional</h2>
-        <p>$10.99</p>
-      </article>
-      <article>
-        <img
-          src="../images/template-image.jpg"
-          alt="Template Image"
-          title="Template Image"
-        />
-        <h2>Leather Sofa</h2>
-        <p>$9.99</p>
-      </article>
-    </main>
     <aside>
       <button></button>
       <h2>Your Bag</h2>
