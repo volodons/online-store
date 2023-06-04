@@ -203,6 +203,99 @@ body {
   color: #637f99;
 }
 
+.shop-cart {
+  max-width: 20vw;
+  min-height: 100vh;
+  position: relative;
+  background-color: #f1f5f8;
+  padding: 1rem;
+}
+
+.close-icon {
+  height: 32px;
+  width: 32px;
+  border: none;
+  background-color: #f1f5f8;
+  background-image: url(../images/close-icon.png);
+  cursor: pointer;
+}
+
+.shop-cart__heading {
+  color: #092440;
+  font-family: "KaushanScript";
+  text-align: center;
+}
+
+.shop-cart__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.shop-cart__item-image {
+  height: 60px;
+  width: 90px;
+  border-radius: 5px;
+}
+
+.shop-cart__item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-cart__item-name {
+  margin-top: 0;
+  color: #092440;
+}
+
+.shop-cart__item-price {
+  margin-top: 0;
+  color: #36536d;
+}
+
+.shop-cart__item-remove-button {
+  padding: 0;
+  text-align: start;
+  background-color: transparent;
+  color: #617e99;
+  border: none;
+  cursor: pointer;
+}
+
+.shop-cart__item-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow {
+  background-color: transparent;
+  color: #ba5d2c;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.shop-cart__footer {
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
+}
+
+.shop-cart__checkout-button {
+  display: inline-block;
+  width: 100%;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: #ba5d2c;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 input[type=range] {
   height: 26px;
   -webkit-appearance: none;
