@@ -207,11 +207,18 @@ body {
 }
 
 .shop-cart {
-  max-width: 20vw;
+  width: 30vw;
   min-height: 100vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: -60vw;
   background-color: $nav-background-color;
   padding: 1rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+.shop-cart--open {
+  transform: translateX(-60vw);
 }
 
 .close-icon {
@@ -284,7 +291,7 @@ body {
 .shop-cart__footer {
   position: absolute;
   bottom: 5%;
-  left: 25%;
+  left: 35%;
 }
 
 .shop-cart__checkout-button {
