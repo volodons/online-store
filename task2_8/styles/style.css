@@ -7,6 +7,12 @@ body {
 }
 
 .header {
+  padding-left: 5rem;
+  padding-right: 5rem;
+  color: #162e46;
+}
+
+.header-homepage {
   position: relative;
   padding-left: 5rem;
   padding-right: 5rem;
@@ -133,4 +139,21 @@ body {
   background-color: #ba5d2c;
   color: #fff;
   border-radius: 5px;
+}
+
+.nav {
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #f1f5f8;
+  color: #617d98;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.section-about-us {
+  padding-left: 16rem;
+  padding-right: 16rem;
+  color: #627e99;
 }/*# sourceMappingURL=style.css.map */

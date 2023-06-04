@@ -10,12 +10,18 @@ body {
 }
 
 .header {
+  padding-left: $page-padding;
+  padding-right: $page-padding;
+  color: $header-text-color;
+}
+
+.header-homepage {
   position: relative;
   padding-left: $page-padding;
   padding-right: $page-padding;
   height: 90vh;
   background-image: url(../images/homepage-background.jpg);
-  color: $header-text-color;
+  color: $header-homepage-text-color;
 }
 
 .header__nav {
@@ -77,9 +83,9 @@ body {
   padding: 1rem 2rem;
   text-decoration: none;
   background-color: transparent;
-  color: $header-text-color;
+  color: $header-homepage-text-color;
   border-radius: 5px;
-  border: 2px solid $header-text-color;
+  border: 2px solid $header-homepage-text-color;
 }
 
 .featured-section {
@@ -134,6 +140,23 @@ body {
   padding: 0.5rem 1rem;
   text-decoration: none;
   background-color: $brown-color;
-  color: $header-text-color;
+  color: $header-homepage-text-color;
   border-radius: 5px;
+}
+
+.nav {
+  padding-left: $page-padding;
+  padding-right: $page-padding;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: $nav-background-color;
+  color: $product-name-color;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.section-about-us {
+  padding-left: 16rem;
+  padding-right: 16rem;
+  color: $text-description-color;
 }
