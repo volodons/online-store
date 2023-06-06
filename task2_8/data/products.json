@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "High-Back Bench",
+      "price": 9.99,
+      "image": "../images/high-back-bench.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Albany Table",
+      "price": 79.99,
+      "image": "../images/albany-table.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Accent Chair",
+      "price": 25.99,
+      "image": "../images/accent-chair.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Wooden Table",
+      "price": 45.99,
+      "image": "../images/wooden-table.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Dining Table",
+      "price": 6.99,
+      "image": "../images/dining-table.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Sofa Set",
+      "price": 69.99,
+      "image": "../images/sofa-set.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Modern Bookshelf",
+      "price": 8.99,
+      "image": "../images/modern-bookshelf.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Emperor Bed",
+      "price": 21.99,
+      "image": "../images/emperor-bed.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Utopia Sofa",
+      "price": 39.95,
+      "image": "../images/utopia-sofa.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Entertainment Center",
+      "price": 29.98,
+      "image": "../images/entertainment-center.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Albany Sectional",
+      "price": 10.99,
+      "image": "../images/albany-sectional.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Leather Sofa",
+      "price": 9.99,
+      "image": "../images/leather-sofa.jpg"
+    }
+  ]
+}
