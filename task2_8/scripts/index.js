@@ -50,6 +50,35 @@ class DataFetcher {
   }
 }
 
+class ShoppingCart {
+  constructor() {
+    this.items = [];
+  }
+
+  addItem(item) {
+    this.items.push(item);
+  }
+
+  removeItem(item) {
+    const index = this.items.indexOf(item);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+    }
+  }
+
+  getTotalPrice() {
+    let totalPrice = 0;
+    this.items.forEach((item) => {
+      totalPrice += item.price;
+    });
+    return totalPrice;
+  }
+
+  clearCart() {
+    this.items = [];
+  }
+}
+
 // class Product {
 //   constructor(data) {
 //     data.products.forEach((product) => {
