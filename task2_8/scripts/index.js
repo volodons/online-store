@@ -76,7 +76,6 @@ class ShoppingCart {
   addItem(item) {
     this.items.push(item);
     const itemIndex = this.items.length - 1;
-    const shoppingCartContainer = document.querySelector(".shop-cart");
     const itemHTML = document.createElement("article");
     itemHTML.classList.add("shop-cart__item");
     itemHTML.innerHTML = `
@@ -98,6 +97,7 @@ class ShoppingCart {
         <span>1</span>
         <button id="decreaseItemCount" class="arrow">&#8897;</button>
       </section>`;
+    const shoppingCartContainer = document.querySelector(".shop-cart");
     shoppingCartContainer.append(itemHTML);
     const buttonRemoveItem = document.querySelector(
       `#remove-item-button-${itemIndex}`
@@ -105,6 +105,7 @@ class ShoppingCart {
     buttonRemoveItem.addEventListener("click", () =>
       this.removeItem(itemHTML, itemIndex)
     );
+    this.getTotalPrice();
   }
 
   removeItem(itemHTML, itemIndex) {
@@ -112,14 +113,20 @@ class ShoppingCart {
     const filteredItems = this.items.filter(Boolean);
     this.items = filteredItems;
     itemHTML.remove();
+    this.getTotalPrice();
   }
 
   getTotalPrice() {
-    let totalPrice = 0;
-    this.items.forEach((item) => {
-      totalPrice += item.price;
-    });
-    return totalPrice;
+    const shoppingCartTotalSum = document.querySelector("#shopCartTotalSum");
+    if (this.items.length === 0) {
+      shoppingCartTotalSum.innerText = "0.00";
+    } else {
+      let totalPrice = 0;
+      this.items.forEach((item) => {
+        totalPrice += item.price;
+      });
+      shoppingCartTotalSum.innerText = totalPrice;
+    }
   }
 
   clearCart() {
