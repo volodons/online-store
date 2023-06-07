@@ -2,72 +2,84 @@
   "products": [
     {
       "id": 1,
+      "category": "Ikea",
       "name": "High-Back Bench",
       "price": 9.99,
       "image": "../images/high-back-bench.jpg"
     },
     {
       "id": 2,
+      "category": "Marcos",
       "name": "Albany Table",
       "price": 79.99,
       "image": "../images/albany-table.jpg"
     },
     {
       "id": 3,
+      "category": "Ikea",
       "name": "Accent Chair",
       "price": 25.99,
       "image": "../images/accent-chair.jpg"
     },
     {
       "id": 4,
+      "category": "Liddy",
       "name": "Wooden Table",
       "price": 45.99,
       "image": "../images/wooden-table.jpg"
     },
     {
       "id": 5,
+      "category": "Caressa",
       "name": "Dining Table",
       "price": 6.99,
       "image": "../images/dining-table.jpg"
     },
     {
       "id": 6,
+      "category": "Marcos",
       "name": "Sofa Set",
       "price": 69.99,
       "image": "../images/sofa-set.jpg"
     },
     {
       "id": 7,
+      "category": "Ikea",
       "name": "Modern Bookshelf",
       "price": 8.99,
       "image": "../images/modern-bookshelf.jpg"
     },
     {
       "id": 8,
+      "category": "Ikea",
       "name": "Emperor Bed",
       "price": 21.99,
       "image": "../images/emperor-bed.jpg"
     },
     {
       "id": 9,
+      "category": "Caressa",
       "name": "Utopia Sofa",
       "price": 39.95,
       "image": "../images/utopia-sofa.jpg"
     },
     {
       "id": 10,
+      "category": "Marcos",
       "name": "Entertainment Center",
       "price": 29.98,
       "image": "../images/entertainment-center.jpg"
     },
     {
       "id": 11,
+      "category": "Ikea",
       "name": "Albany Sectional",
       "price": 10.99,
       "image": "../images/albany-sectional.jpg"
     },
     {
       "id": 12,
+      "category": "Caressa",
       "name": "Leather Sofa",
       "price": 9.99,
       "image": "../images/leather-sofa.jpg"
