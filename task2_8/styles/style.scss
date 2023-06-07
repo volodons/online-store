@@ -251,15 +251,20 @@ body {
 
 .shop-cart__item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
+.shop-cart__item-wrapper {
+  display: flex;
+  column-gap: 2rem;
+}
+
 .shop-cart__item-image {
-  height: 60px;
-  width: 90px;
+  height: 90px;
+  width: 120px;
   border-radius: 5px;
 }
 

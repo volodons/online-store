@@ -8,6 +8,7 @@ let toggleSideMenu = () => {
 
 buttonOpenSideMenu.addEventListener("click", toggleSideMenu);
 buttonCloseSideMenu.addEventListener("click", toggleSideMenu);
+
 class ProductsRenderer {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
@@ -24,10 +25,18 @@ class ProductsRenderer {
           alt=${product.name}
           title=${product.name}
         />
-        <button class="add-to-cart-button"></button>
+        <button id="add-to-cart-button-${products.indexOf(
+          product
+        )}" class="add-to-cart-button"></button>
         <h2 class="product__name">${product.name}</h2>
         <p class="product__price">$${product.price}</p>`;
       this.container.append(productElement);
+      const buttonAddToCart = document.querySelector(
+        `#add-to-cart-button-${products.indexOf(product)}`
+      );
+      buttonAddToCart.addEventListener("click", () => {
+        shoppingCart.addItem(product);
+      });
     });
   }
 }
@@ -67,6 +76,31 @@ class ShoppingCart {
 
   addItem(item) {
     this.items.push(item);
+    const shoppingCartContainer = document.querySelector(".shop-cart");
+    const newItem = document.createElement("article");
+    newItem.classList.add("shop-cart__item");
+    newItem.innerHTML = `
+      <section class="shop-cart__item-wrapper">
+        <img
+          class="shop-cart__item-image"
+          src=${item.image}
+          alt=${item.name}
+          title=${item.name}
+        />
+      <section class="shop-cart__item-info">
+        <p class="shop-cart__item-name">${item.name}</p>
+        <p class="shop-cart__item-price">$${item.price}</p>
+        <button id="remove-item-${this.items.indexOf(
+          item
+        )}" class="shop-cart__item-remove-button">remove</button>
+      </section>
+      </section>
+      <section class="shop-cart__item-count">
+        <button id="increaseItemCount" class="arrow">&#8896;</button>
+        <span>1</span>
+        <button id="decreaseItemCount" class="arrow">&#8897;</button>
+      </section>`;
+    shoppingCartContainer.append(newItem);
   }
 
   removeItem(item) {
@@ -99,6 +133,7 @@ class Product {
   }
 }
 
+const shoppingCart = new ShoppingCart();
 const productsRenderer = new ProductsRenderer("container");
 const dataFetcher = new DataFetcher();
 dataFetcher.fetchData(productsRenderer);
