@@ -49,6 +49,18 @@ class DataFetcher {
   }
 }
 
+// class Product {
+//   constructor(data) {
+//     data.products.forEach((product) => {
+//       this.product.id = id;
+//       this.product.category = category;
+//       this.product.name = name;
+//       this.product.price = price;
+//       this.product.image = image;
+//     });
+//   }
+// }
+
 const productsRenderer = new ProductsRenderer("container");
 const dataFetcher = new DataFetcher();
 dataFetcher.fetchData(productsRenderer);
