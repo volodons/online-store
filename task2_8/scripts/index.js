@@ -19,20 +19,19 @@ class ProductsRenderer {
     products.forEach((product) => {
       const productElement = document.createElement("article");
       productElement.classList.add("product");
+      const itemIndex = this.items.length - 1;
       productElement.innerHTML = `
         <img
           src=${product.image}
           alt=${product.name}
           title=${product.name}
         />
-        <button id="add-to-cart-button-${products.indexOf(
-          product
-        )}" class="add-to-cart-button"></button>
+        <button id="add-to-cart-button-${itemIndex}" class="add-to-cart-button"></button>
         <h2 class="product__name">${product.name}</h2>
         <p class="product__price">$${product.price}</p>`;
       this.container.append(productElement);
       const buttonAddToCart = document.querySelector(
-        `#add-to-cart-button-${products.indexOf(product)}`
+        `#add-to-cart-button-${itemIndex}`
       );
       buttonAddToCart.addEventListener("click", () => {
         shoppingCart.addItem(product);
@@ -76,10 +75,11 @@ class ShoppingCart {
 
   addItem(item) {
     this.items.push(item);
+    const itemIndex = this.items.length - 1;
     const shoppingCartContainer = document.querySelector(".shop-cart");
-    const newItem = document.createElement("article");
-    newItem.classList.add("shop-cart__item");
-    newItem.innerHTML = `
+    const itemHTML = document.createElement("article");
+    itemHTML.classList.add("shop-cart__item");
+    itemHTML.innerHTML = `
       <section class="shop-cart__item-wrapper">
         <img
           class="shop-cart__item-image"
@@ -90,9 +90,7 @@ class ShoppingCart {
       <section class="shop-cart__item-info">
         <p class="shop-cart__item-name">${item.name}</p>
         <p class="shop-cart__item-price">$${item.price}</p>
-        <button id="remove-item-${this.items.indexOf(
-          item
-        )}" class="shop-cart__item-remove-button">remove</button>
+        <button id="remove-item-button-${itemIndex}" class="shop-cart__item-remove-button">remove</button>
       </section>
       </section>
       <section class="shop-cart__item-count">
@@ -100,14 +98,19 @@ class ShoppingCart {
         <span>1</span>
         <button id="decreaseItemCount" class="arrow">&#8897;</button>
       </section>`;
-    shoppingCartContainer.append(newItem);
+    shoppingCartContainer.append(itemHTML);
+    const buttonRemoveItem = document.querySelector(
+      `#remove-item-button-${itemIndex}`
+    );
+    buttonRemoveItem.addEventListener("click", () =>
+      this.removeItem(itemHTML, itemIndex)
+    );
   }
 
-  removeItem(item) {
-    const index = this.items.indexOf(item);
-    if (index !== -1) {
-      this.items.splice(index, 1);
-    }
+  removeItem(itemHTML, itemIndex) {
+    delete this.items[itemIndex];
+    const filteredItems = this.items.filter(Boolean);
+    itemHTML.remove();
   }
 
   getTotalPrice() {
