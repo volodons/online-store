@@ -19,19 +19,19 @@ class ProductsRenderer {
     products.forEach((product) => {
       const productElement = document.createElement("article");
       productElement.classList.add("product");
-      const itemIndex = this.items.length - 1;
+      const productIndex = products.length - 1;
       productElement.innerHTML = `
         <img
           src=${product.image}
           alt=${product.name}
           title=${product.name}
         />
-        <button id="add-to-cart-button-${itemIndex}" class="add-to-cart-button"></button>
+        <button id="add-to-cart-button-${productIndex}" class="add-to-cart-button"></button>
         <h2 class="product__name">${product.name}</h2>
         <p class="product__price">$${product.price}</p>`;
       this.container.append(productElement);
       const buttonAddToCart = document.querySelector(
-        `#add-to-cart-button-${itemIndex}`
+        `#add-to-cart-button-${productIndex}`
       );
       buttonAddToCart.addEventListener("click", () => {
         shoppingCart.addItem(product);
@@ -110,6 +110,7 @@ class ShoppingCart {
   removeItem(itemHTML, itemIndex) {
     delete this.items[itemIndex];
     const filteredItems = this.items.filter(Boolean);
+    this.items = filteredItems;
     itemHTML.remove();
   }
 
