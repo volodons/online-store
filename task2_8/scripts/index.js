@@ -19,7 +19,7 @@ class ProductsRenderer {
     products.forEach((product) => {
       const productElement = document.createElement("article");
       productElement.classList.add("product");
-      const productIndex = products.length - 1;
+      const productIndex = products.indexOf(product);
       productElement.innerHTML = `
         <img
           src=${product.image}
