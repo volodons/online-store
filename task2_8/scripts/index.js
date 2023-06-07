@@ -74,11 +74,22 @@ class ShoppingCart {
   }
 
   addItem(item) {
+    const existingItemIndex = this.items.findIndex(
+      (existingItem) => existingItem.id === item.id
+    );
     this.items.push(item);
     const itemIndex = this.items.length - 1;
-    const itemHTML = document.createElement("article");
-    itemHTML.classList.add("shop-cart__item");
-    itemHTML.innerHTML = `
+    if (existingItemIndex !== -1) {
+      const shopItemCounter = document.querySelector(
+        `#shop-item-counter-${existingItemIndex}`
+      );
+      let count = parseInt(shopItemCounter.textContent);
+      count++;
+      shopItemCounter.textContent = count;
+    } else {
+      const itemHTML = document.createElement("article");
+      itemHTML.classList.add("shop-cart__item");
+      itemHTML.innerHTML = `
       <section class="shop-cart__item-wrapper">
         <img
           class="shop-cart__item-image"
@@ -94,17 +105,18 @@ class ShoppingCart {
       </section>
       <section class="shop-cart__item-count">
         <button id="increaseItemCount" class="arrow">&#8896;</button>
-        <span>1</span>
+        <span id="shop-item-counter-${itemIndex}">1</span>
         <button id="decreaseItemCount" class="arrow">&#8897;</button>
       </section>`;
-    const shoppingCartContainer = document.querySelector(".shop-cart");
-    shoppingCartContainer.append(itemHTML);
-    const buttonRemoveItem = document.querySelector(
-      `#remove-item-button-${itemIndex}`
-    );
-    buttonRemoveItem.addEventListener("click", () =>
-      this.removeItem(itemHTML, itemIndex)
-    );
+      const shoppingCartContainer = document.querySelector(".shop-cart");
+      shoppingCartContainer.append(itemHTML);
+      const buttonRemoveItem = document.querySelector(
+        `#remove-item-button-${itemIndex}`
+      );
+      buttonRemoveItem.addEventListener("click", () =>
+        this.removeItem(itemHTML, itemIndex)
+      );
+    }
     this.getTotalPrice();
   }
 
