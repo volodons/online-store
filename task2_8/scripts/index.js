@@ -24,6 +24,7 @@ class ProductsRenderer {
           alt=${product.name}
           title=${product.name}
         />
+        <button class="add-to-cart-button"></button>
         <h2 class="product__name">${product.name}</h2>
         <p class="product__price">$${product.price}</p>`;
       this.container.append(productElement);
