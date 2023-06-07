@@ -13,9 +13,9 @@ class ProductsRenderer {
     this.container = document.getElementById(containerId);
   }
 
-  renderProducts(data) {
+  renderProducts(products) {
     this.container.innerHTML = "";
-    data.products.forEach((product) => {
+    products.forEach((product) => {
       const productElement = document.createElement("article");
       productElement.classList.add("product");
       productElement.innerHTML = `
@@ -32,7 +32,7 @@ class ProductsRenderer {
   }
 }
 class DataFetcher {
-  fetchData(callback) {
+  fetchData(productsRenderer) {
     fetch("../data/products.json")
       .then((response) => {
         if (!response.ok) {
@@ -52,7 +52,7 @@ class DataFetcher {
               productData.image
             )
         );
-        callback.renderProducts(data);
+        productsRenderer.renderProducts(products);
       })
       .catch((error) => {
         console.error(error);
