@@ -8,6 +8,28 @@ let toggleSideMenu = () => {
 
 buttonOpenSideMenu.addEventListener("click", toggleSideMenu);
 buttonCloseSideMenu.addEventListener("click", toggleSideMenu);
+class ProductsRenderer {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+  }
+
+  renderProducts(data) {
+    this.container.innerHTML = "";
+    data.products.forEach((product) => {
+      const productElement = document.createElement("article");
+      productElement.classList.add("product");
+      productElement.innerHTML = `
+        <img
+          src=${product.image}
+          alt=${product.name}
+          title=${product.name}
+        />
+        <h2 class="product__name">${product.name}</h2>
+        <p class="product__price">$${product.price}</p>`;
+      this.container.append(productElement);
+    });
+  }
+}
 class DataFetcher {
   fetchData(callback) {
     fetch("../data/products.json")
@@ -19,7 +41,7 @@ class DataFetcher {
         }
       })
       .then((data) => {
-        console.log(data);
+        callback.renderProducts(data);
       })
       .catch((error) => {
         console.error(error);
@@ -27,5 +49,6 @@ class DataFetcher {
   }
 }
 
+const productsRenderer = new ProductsRenderer("container");
 const dataFetcher = new DataFetcher();
-dataFetcher.fetchData();
+dataFetcher.fetchData(productsRenderer);
