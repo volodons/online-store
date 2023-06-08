@@ -1,6 +1,7 @@
 const shoppingCartContainer = document.querySelector(".shopping-cart");
-const buttonOpenShoppingCartContainer =
-  document.querySelector(".shopping-cart-button");
+const buttonOpenShoppingCartContainer = document.querySelector(
+  ".shopping-cart-button"
+);
 const buttonCloseShoppingCartContainer = document.querySelector(".close-icon");
 
 const toggleShoppingCartContainer = () => {
@@ -30,9 +31,9 @@ class ProductsRenderer {
       productElement.innerHTML = `
         <img
           class="product__image"
-          src=${product.image}
-          alt=${product.name}
-          title=${product.name}
+          src="${product.image}"
+          alt="${product.name}"
+          title="${product.name}"
         />
         <button id="add-to-cart-button-${productIndex}" class="add-to-cart-button"></button>
         <h2 class="product__name">${product.name}</h2>
@@ -88,9 +89,9 @@ class ShoppingCart {
         <section class="shopping-cart__item-wrapper">
           <img
             class="shopping-cart__item-image"
-            src=${item.image}
-            alt=${item.name}
-            title=${item.name}
+            src="${item.image}"
+            alt="${item.name}"
+            title="${item.name}"
           />
         <section class="shopping-cart__item-info">
           <p class="shopping-cart__item-name">${item.name}</p>
@@ -126,7 +127,9 @@ class ShoppingCart {
   }
 
   getTotalPrice() {
-    const shoppingCartTotalSum = document.querySelector("#shoppingCartTotalSum");
+    const shoppingCartTotalSum = document.querySelector(
+      "#shoppingCartTotalSum"
+    );
     if (this.items.length === 0) {
       shoppingCartTotalSum.innerText = "0.00";
     } else {
