@@ -129,17 +129,17 @@ class ShoppingCart {
   }
 
   getTotalPrice() {
-    const shoppingCartTotalSum = document.querySelector(
-      "#shoppingCartTotalSum"
+    const shoppingCartTotalPrice = document.querySelector(
+      "#shoppingCartTotalPrice"
     );
     if (this.items.length === 0) {
-      shoppingCartTotalSum.innerText = "0.00";
+      shoppingCartTotalPrice.innerText = "0.00";
     } else {
       let totalPrice = 0;
       this.items.forEach((item) => {
         totalPrice += item.price;
       });
-      shoppingCartTotalSum.innerText = totalPrice;
+      shoppingCartTotalPrice.innerText = totalPrice.toFixed(2);
     }
   }
 
