@@ -103,7 +103,10 @@ class ShoppingCart {
           <span id="shop-item-counter-${itemIndex}">1</span>
           <button id="decreaseItemCount" class="arrow">&#8897;</button>
         </section>`;
-      shoppingCartContainer.append(itemHTML);
+      const shoppingCartItemsContainer = document.querySelector(
+        ".shop-cart__items-wrapper"
+      );
+      shoppingCartItemsContainer.append(itemHTML);
       const buttonRemoveItem = document.querySelector(
         `#remove-item-button-${itemIndex}`
       );

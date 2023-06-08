@@ -258,6 +258,12 @@ body {
   text-align: center;
 }
 
+.shop-cart__items-wrapper {
+  height: 60vh;
+  overflow-y: auto;
+  margin-bottom: 2rem;
+}
+
 .shop-cart__item {
   display: flex;
   align-items: center;
@@ -317,7 +323,7 @@ body {
 
 .shop-cart__footer {
   position: absolute;
-  bottom: 5%;
+  bottom: 10%;
   left: 35%;
 }
 
