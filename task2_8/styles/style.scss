@@ -53,20 +53,19 @@ body {
 }
 
 .shop-cart-button {
-  background-image: url(../images/shop-cart.png);
   height: 32px;
-  width: 53px;
+  width: 32px;
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
 
 .shop-cart-button--white {
-  filter: brightness(0) invert(1) grayscale(1);
+  background-image: url(../images/shopping-cart-white.png);
 }
 
-.shop-cart-button--black {
-  filter: brightness(0) invert(0) grayscale(1);
+.shop-cart-button--blue {
+  background-image: url(../images/shopping-cart-blue.png);
 }
 
 .header__text {
