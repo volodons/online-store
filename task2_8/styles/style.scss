@@ -60,7 +60,7 @@ body {
   left: 45%;
 }
 
-.shop-cart-button {
+.shopping-cart-button {
   height: 32px;
   width: 32px;
   border: none;
@@ -68,11 +68,11 @@ body {
   cursor: pointer;
 }
 
-.shop-cart-button--white {
+.shopping-cart-button--white {
   background-image: url(../images/shopping-cart-white.png);
 }
 
-.shop-cart-button--blue {
+.shopping-cart-button--blue {
   background-image: url(../images/shopping-cart-blue.png);
 }
 
@@ -231,7 +231,7 @@ body {
   color: $filter-description-color;
 }
 
-.shop-cart {
+.shopping-cart {
   width: 30vw;
   min-height: 100vh;
   position: fixed;
@@ -242,7 +242,7 @@ body {
   transition: transform 0.5s ease-in-out;
 }
 
-.shop-cart--open {
+.shopping-cart--open {
   transform: translateX(-60vw);
 }
 
@@ -255,19 +255,19 @@ body {
   cursor: pointer;
 }
 
-.shop-cart__heading {
-  color: $shop-cart-heading-color;
+.shopping-cart__heading {
+  color: $shopping-cart-heading-color;
   font-family: $custom-text-font;
   text-align: center;
 }
 
-.shop-cart__items-wrapper {
+.shopping-cart__items-wrapper {
   height: 60vh;
   overflow-y: auto;
   margin-bottom: 2rem;
 }
 
-.shop-cart__item {
+.shopping-cart__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -275,42 +275,42 @@ body {
   margin-bottom: 2rem;
 }
 
-.shop-cart__item-wrapper {
+.shopping-cart__item-wrapper {
   display: flex;
   column-gap: 2rem;
 }
 
-.shop-cart__item-image {
+.shopping-cart__item-image {
   height: 90px;
   width: 120px;
   border-radius: 5px;
 }
 
-.shop-cart__item-info {
+.shopping-cart__item-info {
   display: flex;
   flex-direction: column;
 }
 
-.shop-cart__item-name {
+.shopping-cart__item-name {
   margin-top: 0;
-  color: $shop-cart-heading-color;
+  color: $shopping-cart-heading-color;
 }
 
-.shop-cart__item-price {
+.shopping-cart__item-price {
   margin-top: 0;
-  color: $shop-cart-item-price-color;
+  color: $shopping-cart-item-price-color;
 }
 
-.shop-cart__item-remove-button {
+.shopping-cart__item-remove-button {
   padding: 0;
   text-align: start;
   background-color: transparent;
-  color: $shop-cart-item-remove-button-color;
+  color: $shopping-cart-item-remove-button-color;
   border: none;
   cursor: pointer;
 }
 
-.shop-cart__item-count {
+.shopping-cart__item-count {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -324,13 +324,13 @@ body {
   cursor: pointer;
 }
 
-.shop-cart__footer {
+.shopping-cart__footer {
   position: absolute;
   bottom: 10%;
   left: 35%;
 }
 
-.shop-cart__checkout-button {
+.shopping-cart__checkout-button {
   display: inline-block;
   width: 100%;
   border: none;

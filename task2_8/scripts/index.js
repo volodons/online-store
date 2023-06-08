@@ -1,10 +1,10 @@
-const shoppingCartContainer = document.querySelector(".shop-cart");
+const shoppingCartContainer = document.querySelector(".shopping-cart");
 const buttonOpenShoppingCartContainer =
-  document.querySelector(".shop-cart-button");
+  document.querySelector(".shopping-cart-button");
 const buttonCloseShoppingCartContainer = document.querySelector(".close-icon");
 
 const toggleShoppingCartContainer = () => {
-  shoppingCartContainer.classList.toggle("shop-cart--open");
+  shoppingCartContainer.classList.toggle("shopping-cart--open");
 };
 
 buttonOpenShoppingCartContainer.addEventListener(
@@ -75,36 +75,36 @@ class ShoppingCart {
     this.items.push(item);
     const itemIndex = this.items.length - 1;
     if (existingItemIndex !== -1) {
-      const shopItemCounter = document.querySelector(
-        `#shop-item-counter-${existingItemIndex}`
+      const shoppingItemCounter = document.querySelector(
+        `#shopping-item-counter-${existingItemIndex}`
       );
-      let count = parseInt(shopItemCounter.textContent);
+      let count = parseInt(shoppingItemCounter.textContent);
       count++;
-      shopItemCounter.textContent = count;
+      shoppingItemCounter.textContent = count;
     } else {
       const itemHTML = document.createElement("article");
-      itemHTML.classList.add("shop-cart__item");
+      itemHTML.classList.add("shopping-cart__item");
       itemHTML.innerHTML = `
-        <section class="shop-cart__item-wrapper">
+        <section class="shopping-cart__item-wrapper">
           <img
-            class="shop-cart__item-image"
+            class="shopping-cart__item-image"
             src=${item.image}
             alt=${item.name}
             title=${item.name}
           />
-        <section class="shop-cart__item-info">
-          <p class="shop-cart__item-name">${item.name}</p>
-          <p class="shop-cart__item-price">$${item.price}</p>
-          <button id="remove-item-button-${itemIndex}" class="shop-cart__item-remove-button">remove</button>
+        <section class="shopping-cart__item-info">
+          <p class="shopping-cart__item-name">${item.name}</p>
+          <p class="shopping-cart__item-price">$${item.price}</p>
+          <button id="remove-item-button-${itemIndex}" class="shopping-cart__item-remove-button">remove</button>
         </section>
         </section>
-        <section class="shop-cart__item-count">
+        <section class="shopping-cart__item-count">
           <button id="increaseItemCount" class="arrow">&#8896;</button>
-          <span id="shop-item-counter-${itemIndex}">1</span>
+          <span id="shopping-item-counter-${itemIndex}">1</span>
           <button id="decreaseItemCount" class="arrow">&#8897;</button>
         </section>`;
       const shoppingCartItemsContainer = document.querySelector(
-        ".shop-cart__items-wrapper"
+        ".shopping-cart__items-wrapper"
       );
       shoppingCartItemsContainer.append(itemHTML);
       const buttonRemoveItem = document.querySelector(
@@ -126,7 +126,7 @@ class ShoppingCart {
   }
 
   getTotalPrice() {
-    const shoppingCartTotalSum = document.querySelector("#shopCartTotalSum");
+    const shoppingCartTotalSum = document.querySelector("#shoppingCartTotalSum");
     if (this.items.length === 0) {
       shoppingCartTotalSum.innerText = "0.00";
     } else {
