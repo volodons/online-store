@@ -147,16 +147,22 @@ class ShoppingCart {
 }
 
 class Product {
-  constructor(id, category, name, price, image) {
-    this.id = id;
-    this.category = category;
-    this.name = name;
-    this.price = price;
-    this.image = image;
+  createProduct(productData) {
+    return new Product(
+      productData.id,
+      productData.category,
+      productData.name,
+      productData.price,
+      productData.image
+    );
   }
 }
 
 const shoppingCart = new ShoppingCart();
 const productsRenderer = new ProductsRenderer("container");
 const dataFetcher = new DataFetcher();
-dataFetcher.fetchData(productsRenderer);
+dataFetcher.fetchData().then((data) => {
+  const products = data.products.map((productData) => {
+    Product.createProduct(productData);
+  });
+});
