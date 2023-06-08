@@ -40,27 +40,14 @@ class ProductsRenderer {
   }
 }
 class DataFetcher {
-  fetchData(productsRenderer) {
-    fetch("../data/products.json")
+  static fetchData() {
+    return fetch("../data/products.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Request failed with status code " + response.status);
         } else {
           return response.json();
         }
-      })
-      .then((data) => {
-        const products = data.products.map(
-          (productData) =>
-            new Product(
-              productData.id,
-              productData.category,
-              productData.name,
-              productData.price,
-              productData.image
-            )
-        );
-        productsRenderer.renderProducts(products);
       })
       .catch((error) => {
         console.error(error);
@@ -147,7 +134,7 @@ class ShoppingCart {
 }
 
 class Product {
-  createProduct(productData) {
+  static createProduct(productData) {
     return new Product(
       productData.id,
       productData.category,
@@ -160,9 +147,9 @@ class Product {
 
 const shoppingCart = new ShoppingCart();
 const productsRenderer = new ProductsRenderer("container");
-const dataFetcher = new DataFetcher();
-dataFetcher.fetchData().then((data) => {
-  const products = data.products.map((productData) => {
+DataFetcher.fetchData().then((data) => {
+  data.products.map((productData) => {
     Product.createProduct(productData);
   });
+  productsRenderer.renderProducts(data.products);
 });
