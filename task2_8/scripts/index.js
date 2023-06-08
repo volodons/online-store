@@ -1,13 +1,20 @@
-const sideMenu = document.querySelector(".shop-cart");
-const buttonOpenSideMenu = document.querySelector(".shop-cart-button");
-const buttonCloseSideMenu = document.querySelector(".close-icon");
+const shoppingCartContainer = document.querySelector(".shop-cart");
+const buttonOpenShoppingCartContainer =
+  document.querySelector(".shop-cart-button");
+const buttonCloseShoppingCartContainer = document.querySelector(".close-icon");
 
-let toggleSideMenu = () => {
-  sideMenu.classList.toggle("shop-cart--open");
-};
+const toggleShoppingCartContainer = () => {
+  shoppingCartContainer.classList.toggle("shop-cart--open");
+}
 
-buttonOpenSideMenu.addEventListener("click", toggleSideMenu);
-buttonCloseSideMenu.addEventListener("click", toggleSideMenu);
+buttonOpenShoppingCartContainer.addEventListener(
+  "click",
+  toggleShoppingCartContainer
+);
+buttonCloseShoppingCartContainer.addEventListener(
+  "click",
+  toggleShoppingCartContainer
+);
 
 class ProductsRenderer {
   constructor(containerId) {
