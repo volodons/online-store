@@ -28,6 +28,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .nav-list {
@@ -51,6 +52,12 @@ body {
 .heading-custom--large {
   font-size: 2.5rem;
   letter-spacing: 0.5rem;
+}
+
+.heading-custom--centered {
+  position: absolute;
+  bottom: -25%;
+  left: 45%;
 }
 
 .shop-cart-button {
