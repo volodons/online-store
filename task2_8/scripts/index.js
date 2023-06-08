@@ -84,25 +84,24 @@ class ShoppingCart {
       const itemHTML = document.createElement("article");
       itemHTML.classList.add("shop-cart__item");
       itemHTML.innerHTML = `
-      <section class="shop-cart__item-wrapper">
-        <img
-          class="shop-cart__item-image"
-          src=${item.image}
-          alt=${item.name}
-          title=${item.name}
-        />
-      <section class="shop-cart__item-info">
-        <p class="shop-cart__item-name">${item.name}</p>
-        <p class="shop-cart__item-price">$${item.price}</p>
-        <button id="remove-item-button-${itemIndex}" class="shop-cart__item-remove-button">remove</button>
-      </section>
-      </section>
-      <section class="shop-cart__item-count">
-        <button id="increaseItemCount" class="arrow">&#8896;</button>
-        <span id="shop-item-counter-${itemIndex}">1</span>
-        <button id="decreaseItemCount" class="arrow">&#8897;</button>
-      </section>`;
-      const shoppingCartContainer = document.querySelector(".shop-cart");
+        <section class="shop-cart__item-wrapper">
+          <img
+            class="shop-cart__item-image"
+            src=${item.image}
+            alt=${item.name}
+            title=${item.name}
+          />
+        <section class="shop-cart__item-info">
+          <p class="shop-cart__item-name">${item.name}</p>
+          <p class="shop-cart__item-price">$${item.price}</p>
+          <button id="remove-item-button-${itemIndex}" class="shop-cart__item-remove-button">remove</button>
+        </section>
+        </section>
+        <section class="shop-cart__item-count">
+          <button id="increaseItemCount" class="arrow">&#8896;</button>
+          <span id="shop-item-counter-${itemIndex}">1</span>
+          <button id="decreaseItemCount" class="arrow">&#8897;</button>
+        </section>`;
       shoppingCartContainer.append(itemHTML);
       const buttonRemoveItem = document.querySelector(
         `#remove-item-button-${itemIndex}`
