@@ -1,3 +1,4 @@
+const overlayThemeToggler = document.querySelector("#overlay");
 const shoppingCartContainer = document.querySelector(".shopping-cart");
 const buttonOpenShoppingCartContainer = document.querySelector(
   ".shopping-cart-button"
@@ -5,6 +6,7 @@ const buttonOpenShoppingCartContainer = document.querySelector(
 const buttonCloseShoppingCartContainer = document.querySelector(".close-icon");
 
 const toggleShoppingCartContainer = () => {
+  overlayThemeToggler.classList.toggle("overlay-theme");
   shoppingCartContainer.classList.toggle("shopping-cart--open");
 };
 

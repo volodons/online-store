@@ -5,6 +5,14 @@
   src: url(../fonts/kaushanscript/KaushanScript-Regular.otf);
 }
 
+.overlay-theme {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
 body {
   font-family: $regular-text-font;
   font-weight: $page-font-weight;
@@ -242,6 +250,7 @@ body {
   background-color: $nav-background-color;
   padding: 1rem;
   transition: transform 0.5s ease-in-out;
+  z-index: 9999;
 }
 
 .shopping-cart--open {
