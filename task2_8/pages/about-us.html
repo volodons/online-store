@@ -19,12 +19,29 @@
       <header class="header__nav">
         <nav>
           <ul class="nav-list">
-            <li><a class="nav-list__link" href="../index.html">Home</a></li>
             <li>
-              <a class="nav-list__link" href="./products.html">Products</a>
+              <a
+                class="nav-list__link"
+                href="../index.html"
+                title="Proceed To Homepage"
+                >Home</a
+              >
             </li>
             <li>
-              <a class="nav-list__link" href="#">About Us</a>
+              <a
+                class="nav-list__link"
+                href="./products.html"
+                title="Proceed To Products Page"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a
+                class="nav-list__link"
+                href="#"
+                title="Proceed To About Us Page"
+                >About Us</a
+              >
             </li>
           </ul>
         </nav>
@@ -32,13 +49,18 @@
         <button
           class="shopping-cart-button shopping-cart-button--blue"
           type="button"
+          title="Open Your Shopping Cart"
         ></button>
       </header>
     </section>
     <section class="nav">
-      <a class="nav-list__link" href="../index.html">Home</a>
+      <a class="nav-list__link" href="../index.html" title="Proceed To Homepage"
+        >Home</a
+      >
       <span>/</span>
-      <a class="nav-list__link" href="#">About Us</a>
+      <a class="nav-list__link" href="#" title="Proceed To About Us Page"
+        >About Us</a
+      >
     </section>
     <section class="about-us-section">
       <h2 class="text-heading"><span class="slash"> / </span>Our History</h2>
@@ -58,14 +80,19 @@
       </p>
     </section>
     <aside class="shopping-cart">
-      <button class="close-icon"></button>
+      <button class="close-icon" title="Close Your Shopping Cart"></button>
       <h2 class="shopping-cart__heading">Your Bag</h2>
       <section class="shopping-cart__items-wrapper"></section>
       <section class="shopping-cart__footer">
         <h2 class="shopping-cart__heading">
           Total : $<span id="shoppingCartTotalSum">0.00</span>
         </h2>
-        <button class="shopping-cart__checkout-button">CHECKOUT</button>
+        <button
+          class="shopping-cart__checkout-button"
+          title="Proceed To Checkout"
+        >
+          CHECKOUT
+        </button>
       </section>
     </aside>
   </body>

@@ -15,14 +15,24 @@
       <section class="header__nav">
         <nav>
           <ul class="nav-list">
-            <li><a class="nav-list__link" href="#">Home</a></li>
             <li>
-              <a class="nav-list__link" href="./pages/products.html"
+              <a class="nav-list__link" href="#" title="Proceed To Homepage"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                class="nav-list__link"
+                href="./pages/products.html"
+                title="Proceed To Products page"
                 >Products</a
               >
             </li>
             <li>
-              <a class="nav-list__link" href="./pages/about-us.html"
+              <a
+                class="nav-list__link"
+                href="./pages/about-us.html"
+                title="Proceed To About Us Page"
                 >About Us</a
               >
             </li>
@@ -32,6 +42,7 @@
         <button
           class="shopping-cart-button shopping-cart-button--white"
           type="button"
+          title="Open Your Shopping Cart"
         ></button>
       </section>
       <section class="header__text">
@@ -39,7 +50,12 @@
           Rest, Relax, Unwind
         </h2>
         <p class="header__paragraph">Embrace your choices - we do</p>
-        <a class="header__button-link" href="./pages/products.html">SHOW NOW</a>
+        <a
+          class="header__button-link"
+          href="./pages/products.html"
+          title="Proceed To Products Page"
+          >SHOW NOW</a
+        >
       </section>
     </header>
     <section class="featured-section">
@@ -74,20 +90,28 @@
         </article>
       </section>
       <section class="button-wrapper">
-        <a class="products__button-link" href="./pages/products.html"
+        <a
+          class="products__button-link"
+          href="./pages/products.html"
+          title="Proceed To Products Page"
           >ALL PRODUCTS</a
         >
       </section>
     </section>
     <aside class="shopping-cart">
-      <button class="close-icon"></button>
+      <button class="close-icon" title="Close Your Shopping Cart"></button>
       <h2 class="shopping-cart__heading">Your Bag</h2>
       <section class="shopping-cart__items-wrapper"></section>
       <section class="shopping-cart__footer">
         <h2 class="shopping-cart__heading">
           Total : $<span id="shoppingCartTotalSum">0.00</span>
         </h2>
-        <button class="shopping-cart__checkout-button">CHECKOUT</button>
+        <button
+          class="shopping-cart__checkout-button"
+          title="Proceed To Checkout"
+        >
+          CHECKOUT
+        </button>
       </section>
     </aside>
   </body>
