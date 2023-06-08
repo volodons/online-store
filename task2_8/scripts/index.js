@@ -29,6 +29,7 @@ class ProductsRenderer {
       const productIndex = products.indexOf(product);
       productElement.innerHTML = `
         <img
+          class="product__image"
           src=${product.image}
           alt=${product.name}
           title=${product.name}

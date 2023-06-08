@@ -125,6 +125,10 @@ body {
   line-height: 0;
 }
 
+.product__image {
+  border-radius: 10px;
+}
+
 .add-to-cart-button {
   position: absolute;
   height: 32px;
