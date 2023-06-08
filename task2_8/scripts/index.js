@@ -5,7 +5,7 @@ const buttonCloseShoppingCartContainer = document.querySelector(".close-icon");
 
 const toggleShoppingCartContainer = () => {
   shoppingCartContainer.classList.toggle("shop-cart--open");
-}
+};
 
 buttonOpenShoppingCartContainer.addEventListener(
   "click",
@@ -152,6 +152,22 @@ class Product {
   }
 }
 
+class FilterProductName {
+  constructor(inputElement) {
+    this.inputElement = inputElement;
+    this.addEventListener("input", this.onTextInput);
+  }
+
+  addEventListener() {
+    inputElement.addEventListener("input", this.getProductName);
+  }
+
+  getProductName() {
+    const productName = inputElement.value;
+    DataFetcher.fetchData().then((data) => console.log(data));
+  }
+}
+
 const shoppingCart = new ShoppingCart();
 const productsRenderer = new ProductsRenderer("container");
 DataFetcher.fetchData().then((data) => {
@@ -160,3 +176,4 @@ DataFetcher.fetchData().then((data) => {
   });
   productsRenderer.renderProducts(data.products);
 });
+const filterProductName = new FilterProductName("#inputElement");
