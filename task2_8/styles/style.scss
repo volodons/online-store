@@ -98,6 +98,7 @@ body {
 .featured-section {
   padding-left: $page-padding;
   padding-right: $page-padding;
+  margin-top: 4rem;
 }
 
 .slash {
@@ -161,6 +162,7 @@ body {
 .products__button-link {
   display: inline-block;
   padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
   text-decoration: none;
   background-color: $brown-color;
   color: $header-homepage-text-color;
