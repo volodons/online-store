@@ -162,17 +162,30 @@ class Product {
 
 class FilterProductName {
   constructor(inputElement) {
-    this.inputElement = inputElement;
-    this.addEventListener("input", this.onTextInput);
+    this.inputElement = document.querySelector(inputElement);
+    this.debouncedGetProductByName = this.debounce(this.getProductByName, 300);
+    this.inputElement.addEventListener("input", this.debouncedGetProductByName);
   }
 
-  addEventListener() {
-    inputElement.addEventListener("input", this.getProductName);
+  debounce(func, delay) {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, arguments);
+      }, delay);
+    };
   }
 
-  getProductName() {
-    const productName = inputElement.value;
-    DataFetcher.fetchData().then((data) => console.log(data));
+  getProductByName() {
+    const userInput = inputElement.value.toLowerCase();
+    DataFetcher.fetchData().then((data) => {
+      const filteredProducts = data.products.filter((product) => {
+        const productName = product.name.toLowerCase();
+        return productName.includes(userInput);
+      });
+      productsRenderer.renderProducts(filteredProducts);
+    });
   }
 }
 
