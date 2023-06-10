@@ -4,6 +4,8 @@ const buttonOpenShoppingCartContainer = document.querySelector(
   ".shopping-cart-button"
 );
 const buttonCloseShoppingCartContainer = document.querySelector(".close-icon");
+const rangeInput = document.querySelector("#rangeInput");
+const rangePrice = document.querySelector("#rangePrice");
 
 const toggleShoppingCartContainer = () => {
   overlayThemeToggler.classList.toggle("overlay-theme");
@@ -18,6 +20,9 @@ buttonCloseShoppingCartContainer.addEventListener(
   "click",
   toggleShoppingCartContainer
 );
+rangeInput.addEventListener("input", () => {
+  rangePrice.innerText = rangeInput.value;
+});
 
 class ProductsRenderer {
   constructor(containerId) {

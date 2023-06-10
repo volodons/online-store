@@ -118,11 +118,17 @@
         <p class="price-filter-heading">Price</p>
         <input
           type="range"
-          name="rangePrice"
-          id="rangePrice"
+          name="rangeInput"
+          id="rangeInput"
           class="price-filter-range"
+          min="0"
+          max="80"
+          step="1"
+          value="80"
         />
-        <p class="price-filter-description">Value : <span>$80</span></p>
+        <p class="price-filter-description">
+          Value : $<span id="rangePrice">80</span>
+        </p>
       </section>
       <section id="container" class="products"></section>
     </section>
