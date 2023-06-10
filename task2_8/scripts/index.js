@@ -115,6 +115,19 @@ class ShoppingCart {
         ".shopping-cart__items-wrapper"
       );
       shoppingCartItemsContainer.append(itemHTML);
+      const itemCounter = document.querySelector(
+        `#shopping-item-counter-${itemIndex}`
+      );
+      const buttonIncreaseItemCount =
+        document.querySelector("#increaseItemCount");
+      buttonIncreaseItemCount.addEventListener("click", () => {
+        this.increaseItemCount(itemCounter);
+      });
+      const buttonDecreaseItemCount =
+        document.querySelector("#decreaseItemCount");
+      buttonDecreaseItemCount.addEventListener("click", () => {
+        this.decreaseItemCount(itemCounter, itemHTML, itemIndex);
+      });
       const buttonRemoveItem = document.querySelector(
         `#remove-item-button-${itemIndex}`
       );
@@ -123,6 +136,22 @@ class ShoppingCart {
       );
     }
     this.getTotalPrice();
+  }
+
+  increaseItemCount(itemCounter) {
+    let count = parseInt(itemCounter.innerText);
+    count++;
+    itemCounter.innerText = count;
+  }
+
+  decreaseItemCount(itemCounter, itemHTML, itemIndex) {
+    let count = parseInt(itemCounter.innerText);
+    if (count >= 2) {
+      count--;
+      itemCounter.innerText = count;
+    } else if (count === 1) {
+      this.removeItem(itemHTML, itemIndex);
+    }
   }
 
   removeItem(itemHTML, itemIndex) {
