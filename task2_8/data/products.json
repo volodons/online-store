@@ -2,84 +2,84 @@
   "products": [
     {
       "id": 1,
-      "category": "Ikea",
+      "company": "Ikea",
       "name": "High-Back Bench",
       "price": 9.99,
       "image": "../images/high-back-bench.jpg"
     },
     {
       "id": 2,
-      "category": "Marcos",
+      "company": "Marcos",
       "name": "Albany Table",
       "price": 79.99,
       "image": "../images/albany-table.jpg"
     },
     {
       "id": 3,
-      "category": "Ikea",
+      "company": "Ikea",
       "name": "Accent Chair",
       "price": 25.99,
       "image": "../images/accent-chair.jpg"
     },
     {
       "id": 4,
-      "category": "Liddy",
+      "company": "Liddy",
       "name": "Wooden Table",
       "price": 45.99,
       "image": "../images/wooden-table.jpg"
     },
     {
       "id": 5,
-      "category": "Caressa",
+      "company": "Caressa",
       "name": "Dining Table",
       "price": 6.99,
       "image": "../images/dining-table.jpg"
     },
     {
       "id": 6,
-      "category": "Marcos",
+      "company": "Marcos",
       "name": "Sofa Set",
       "price": 69.99,
       "image": "../images/sofa-set.jpg"
     },
     {
       "id": 7,
-      "category": "Ikea",
+      "company": "Ikea",
       "name": "Modern Bookshelf",
       "price": 8.99,
       "image": "../images/modern-bookshelf.jpg"
     },
     {
       "id": 8,
-      "category": "Ikea",
+      "company": "Ikea",
       "name": "Emperor Bed",
       "price": 21.99,
       "image": "../images/emperor-bed.jpg"
     },
     {
       "id": 9,
-      "category": "Caressa",
+      "company": "Caressa",
       "name": "Utopia Sofa",
       "price": 39.95,
       "image": "../images/utopia-sofa.jpg"
     },
     {
       "id": 10,
-      "category": "Marcos",
+      "company": "Marcos",
       "name": "Entertainment Center",
       "price": 29.98,
       "image": "../images/entertainment-center.jpg"
     },
     {
       "id": 11,
-      "category": "Ikea",
+      "company": "Ikea",
       "name": "Albany Sectional",
       "price": 10.99,
       "image": "../images/albany-sectional.jpg"
     },
     {
       "id": 12,
-      "category": "Caressa",
+      "company": "Caressa",
       "name": "Leather Sofa",
       "price": 9.99,
       "image": "../images/leather-sofa.jpg"
