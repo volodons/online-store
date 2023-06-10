@@ -152,7 +152,7 @@ class Product {
   static createProduct(productData) {
     return new Product(
       productData.id,
-      productData.category,
+      productData.company,
       productData.name,
       productData.price,
       productData.image
@@ -189,6 +189,93 @@ class FilterProductName {
   }
 }
 
+class FilterProductCompany {
+  constructor(
+    buttonAllCompanies,
+    buttonCompanyIkea,
+    buttonCompanyMarcos,
+    buttonCompanyCaressa,
+    buttonCompanyLiddy
+  ) {
+    this.buttonAllCompanies = buttonAllCompanies;
+    this.buttonAllCompanies = document.querySelector("#buttonAllCompanies");
+    this.buttonAllCompanies.addEventListener(
+      "click",
+      this.getAllCompaniesProducts
+    );
+
+    this.buttonCompanyIkea = buttonCompanyIkea;
+    this.buttonCompanyIkea = document.querySelector("#buttonCompanyIkea");
+    this.buttonCompanyIkea.addEventListener(
+      "click",
+      this.getIkeaCompanyProducts
+    );
+
+    this.buttonCompanyMarcos = buttonCompanyMarcos;
+    this.buttonCompanyMarcos = document.querySelector("#buttonCompanyMarcos");
+    this.buttonCompanyMarcos.addEventListener(
+      "click",
+      this.getMarcosCompanyProducts
+    );
+
+    this.buttonCompanyCaressa = buttonCompanyCaressa;
+    this.buttonCompanyCaressa = document.querySelector("#buttonCompanyCaressa");
+    this.buttonCompanyCaressa.addEventListener(
+      "click",
+      this.getCaressaCompanyProducts
+    );
+
+    this.buttonCompanyLiddy = buttonCompanyLiddy;
+    this.buttonCompanyLiddy = document.querySelector("#buttonCompanyLiddy");
+    this.buttonCompanyLiddy.addEventListener(
+      "click",
+      this.getLiddyCompanyProducts
+    );
+  }
+
+  getAllCompaniesProducts() {
+    DataFetcher.fetchData().then((data) => {
+      productsRenderer.renderProducts(data.products);
+    });
+  }
+
+  getIkeaCompanyProducts() {
+    DataFetcher.fetchData().then((data) => {
+      const filteredProducts = data.products.filter((product) => {
+        return product.company.includes("Ikea");
+      });
+      productsRenderer.renderProducts(filteredProducts);
+    });
+  }
+
+  getMarcosCompanyProducts() {
+    DataFetcher.fetchData().then((data) => {
+      const filteredProducts = data.products.filter((product) => {
+        return product.company.includes("Marcos");
+      });
+      productsRenderer.renderProducts(filteredProducts);
+    });
+  }
+
+  getCaressaCompanyProducts() {
+    DataFetcher.fetchData().then((data) => {
+      const filteredProducts = data.products.filter((product) => {
+        return product.company.includes("Caressa");
+      });
+      productsRenderer.renderProducts(filteredProducts);
+    });
+  }
+
+  getLiddyCompanyProducts() {
+    DataFetcher.fetchData().then((data) => {
+      const filteredProducts = data.products.filter((product) => {
+        return product.company.includes("Liddy");
+      });
+      productsRenderer.renderProducts(filteredProducts);
+    });
+  }
+}
+
 const shoppingCart = new ShoppingCart();
 const productsRenderer = new ProductsRenderer("container");
 DataFetcher.fetchData().then((data) => {
@@ -198,3 +285,10 @@ DataFetcher.fetchData().then((data) => {
   productsRenderer.renderProducts(data.products);
 });
 const filterProductName = new FilterProductName("#inputElement");
+const filterProductCompany = new FilterProductCompany(
+  "#buttonAllCompanies",
+  "#buttonCompanyIkea",
+  "#buttonCompanyMarcos",
+  "#buttonCompanyCaressa",
+  "#buttonCompanyLiddy"
+);
