@@ -107,9 +107,9 @@ class ShoppingCart {
         </section>
         </section>
         <section class="shopping-cart__item-count">
-          <button id="increaseItemCount" class="arrow">&#8896;</button>
+          <button id="increaseItemCount-${itemIndex}" class="arrow">&#8896;</button>
           <span id="shopping-item-counter-${itemIndex}">1</span>
-          <button id="decreaseItemCount" class="arrow">&#8897;</button>
+          <button id="decreaseItemCount-${itemIndex}" class="arrow">&#8897;</button>
         </section>`;
       const shoppingCartItemsContainer = document.querySelector(
         ".shopping-cart__items-wrapper"
@@ -118,48 +118,60 @@ class ShoppingCart {
       const itemCounter = document.querySelector(
         `#shopping-item-counter-${itemIndex}`
       );
-      const buttonIncreaseItemCount =
-        document.querySelector("#increaseItemCount");
+      const buttonIncreaseItemCount = document.querySelector(
+        `#increaseItemCount-${itemIndex}`
+      );
       buttonIncreaseItemCount.addEventListener("click", () => {
-        this.increaseItemCount(itemCounter);
+        this.increaseItemCount(item, itemCounter);
       });
-      const buttonDecreaseItemCount =
-        document.querySelector("#decreaseItemCount");
+      const buttonDecreaseItemCount = document.querySelector(
+        `#decreaseItemCount-${itemIndex}`
+      );
       buttonDecreaseItemCount.addEventListener("click", () => {
-        this.decreaseItemCount(itemCounter, itemHTML, itemIndex);
+        this.decreaseItemCount(item, itemCounter, itemHTML, itemIndex);
       });
       const buttonRemoveItem = document.querySelector(
         `#remove-item-button-${itemIndex}`
       );
       buttonRemoveItem.addEventListener("click", () =>
-        this.removeItem(itemHTML, itemIndex)
+        this.removeItem(item, itemHTML)
       );
     }
     this.getTotalPrice();
   }
 
-  increaseItemCount(itemCounter) {
+  increaseItemCount(item, itemCounter) {
     let count = parseInt(itemCounter.innerText);
     count++;
     itemCounter.innerText = count;
+    this.items.push(item);
+    this.getTotalPrice();
+    console.log(this.items);
   }
 
-  decreaseItemCount(itemCounter, itemHTML, itemIndex) {
+  decreaseItemCount(item, itemCounter, itemHTML, itemIndex) {
     let count = parseInt(itemCounter.innerText);
     if (count >= 2) {
       count--;
       itemCounter.innerText = count;
+      this.items.splice(itemIndex, 1);
     } else if (count === 1) {
-      this.removeItem(itemHTML, itemIndex);
+      this.removeItem(item, itemHTML);
     }
+    this.getTotalPrice();
+    console.log(this.items);
   }
 
-  removeItem(itemHTML, itemIndex) {
-    delete this.items[itemIndex];
-    const filteredItems = this.items.filter(Boolean);
-    this.items = filteredItems;
+  removeItem(item, itemHTML) {
+    const itemIdToRemove = item.id;
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      if (this.items[i].id === itemIdToRemove) {
+        this.items.splice(i, 1);
+      }
+    }
     itemHTML.remove();
     this.getTotalPrice();
+    console.log(this.items);
   }
 
   getTotalPrice() {
