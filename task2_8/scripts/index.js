@@ -281,6 +281,26 @@ class FilterProductCompany {
   }
 }
 
+class FilterProductPrice {
+  constructor(rangeInput, rangePrice) {
+    this.rangeInput = rangeInput;
+    this.rangePrice = rangePrice;
+    rangeInput = document.querySelector("#rangeInput");
+    rangePrice = document.querySelector("#rangePrice");
+    rangeInput.addEventListener("input", this.getProductsByPrice);
+  }
+
+  getProductsByPrice() {
+    const priceInput = rangeInput.value;
+    DataFetcher.fetchData().then((data) => {
+      const filteredProducts = data.products.filter((product) => {
+        return product.price < priceInput;
+      });
+      productsRenderer.renderProducts(filteredProducts);
+    });
+  }
+}
+
 const shoppingCart = new ShoppingCart();
 const productsRenderer = new ProductsRenderer("container");
 DataFetcher.fetchData().then((data) => {
@@ -297,3 +317,4 @@ const filterProductCompany = new FilterProductCompany(
   "#buttonCompanyCaressa",
   "#buttonCompanyLiddy"
 );
+const filterProductPrice = new FilterProductPrice("#rangeInput", "#rangePrice");
