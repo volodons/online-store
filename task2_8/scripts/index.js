@@ -24,13 +24,14 @@ rangeInput.addEventListener("input", () => {
   rangePrice.innerText = rangeInput.value;
 });
 
-class ProductsRenderer {
-  constructor(containerId) {
-    this.container = document.getElementById(containerId);
+class Renderer {
+  constructor(productsContainerId, itemsContainerId) {
+    this.productsContainer = document.getElementById(productsContainerId);
+    this.itemsContainer = document.getElementById(itemsContainerId);
   }
 
   renderProducts(products) {
-    this.container.innerHTML = "";
+    this.productsContainer.innerHTML = "";
     products.forEach((product) => {
       const productElement = document.createElement("article");
       productElement.classList.add("product");
@@ -45,7 +46,7 @@ class ProductsRenderer {
         <button id="add-to-cart-button-${productIndex}" class="add-to-cart-button"></button>
         <h2 class="product__name">${product.name}</h2>
         <p class="product__price">$${product.price}</p>`;
-      this.container.append(productElement);
+      this.productsContainer.append(productElement);
       const buttonAddToCart = document.querySelector(
         `#add-to-cart-button-${productIndex}`
       );
@@ -54,7 +55,60 @@ class ProductsRenderer {
       });
     });
   }
+
+  renderItems(items) {
+    this.itemsContainer.innerHTML = "";
+    for (let i = 0; i < items.length; i++) {
+      const itemIndex = i;
+      const item = items[itemIndex];
+      const itemHTML = document.createElement("article");
+      itemHTML.classList.add("shopping-cart__item");
+      itemHTML.innerHTML = `
+        <section class="shopping-cart__item-wrapper">
+          <img
+            class="shopping-cart__item-image"
+            src="${items[itemIndex].image}"
+            alt="${items[itemIndex].name}"
+            title="${items[itemIndex].name}"
+          />
+        <section class="shopping-cart__item-info">
+          <p class="shopping-cart__item-name">${items[itemIndex].name}</p>
+          <p class="shopping-cart__item-price">$${items[itemIndex].price}</p>
+          <button id="remove-item-button-${itemIndex}" class="shopping-cart__item-remove-button">remove</button>
+        </section>
+        </section>
+        <section class="shopping-cart__item-count">
+          <button id="increaseItemCount-${itemIndex}" class="arrow">&#8896;</button>
+          <span id="shopping-item-counter-${itemIndex}">1</span>
+          <button id="decreaseItemCount-${itemIndex}" class="arrow">&#8897;</button>
+        </section>`;
+      this.itemsContainer.append(itemHTML);
+      const itemCounter = document.querySelector(
+        `#shopping-item-counter-${itemIndex}`
+      );
+      const buttonIncreaseItemCount = document.querySelector(
+        `#increaseItemCount-${itemIndex}`
+      );
+      buttonIncreaseItemCount.addEventListener("click", () => {
+        shoppingCart.increaseItemCount(item, itemIndex, itemCounter);
+      });
+      const buttonDecreaseItemCount = document.querySelector(
+        `#decreaseItemCount-${itemIndex}`
+      );
+      buttonDecreaseItemCount.addEventListener("click", () => {
+        shoppingCart.decreaseItemCount(item, itemCounter, itemHTML, itemIndex);
+      });
+      const buttonRemoveItem = document.querySelector(
+        `#remove-item-button-${itemIndex}`
+      );
+      buttonRemoveItem.addEventListener("click", () =>
+        shoppingCart.removeItem(item, itemIndex, itemHTML)
+      );
+    }
+    shoppingCart.getTotalPrice(items);
+  }
 }
+
 class DataFetcher {
   static fetchData() {
     return fetch("../data/products.json")
@@ -73,7 +127,7 @@ class DataFetcher {
 
 class ShoppingCart {
   constructor() {
-    this.items = [];
+    this.items = LocalStorageHandler.getItems() || [];
   }
 
   addItem(item) {
@@ -82,6 +136,7 @@ class ShoppingCart {
     );
     this.items.push(item);
     const itemIndex = this.items.length - 1;
+    LocalStorageHandler.setItem(itemIndex, item);
     if (existingItemIndex !== -1) {
       const shoppingItemCounter = document.querySelector(
         `#shopping-item-counter-${existingItemIndex}`
@@ -90,63 +145,18 @@ class ShoppingCart {
       count++;
       shoppingItemCounter.textContent = count;
     } else {
-      const itemHTML = document.createElement("article");
-      itemHTML.classList.add("shopping-cart__item");
-      itemHTML.innerHTML = `
-        <section class="shopping-cart__item-wrapper">
-          <img
-            class="shopping-cart__item-image"
-            src="${item.image}"
-            alt="${item.name}"
-            title="${item.name}"
-          />
-        <section class="shopping-cart__item-info">
-          <p class="shopping-cart__item-name">${item.name}</p>
-          <p class="shopping-cart__item-price">$${item.price}</p>
-          <button id="remove-item-button-${itemIndex}" class="shopping-cart__item-remove-button">remove</button>
-        </section>
-        </section>
-        <section class="shopping-cart__item-count">
-          <button id="increaseItemCount-${itemIndex}" class="arrow">&#8896;</button>
-          <span id="shopping-item-counter-${itemIndex}">1</span>
-          <button id="decreaseItemCount-${itemIndex}" class="arrow">&#8897;</button>
-        </section>`;
-      const shoppingCartItemsContainer = document.querySelector(
-        ".shopping-cart__items-wrapper"
-      );
-      shoppingCartItemsContainer.append(itemHTML);
-      const itemCounter = document.querySelector(
-        `#shopping-item-counter-${itemIndex}`
-      );
-      const buttonIncreaseItemCount = document.querySelector(
-        `#increaseItemCount-${itemIndex}`
-      );
-      buttonIncreaseItemCount.addEventListener("click", () => {
-        this.increaseItemCount(item, itemCounter);
-      });
-      const buttonDecreaseItemCount = document.querySelector(
-        `#decreaseItemCount-${itemIndex}`
-      );
-      buttonDecreaseItemCount.addEventListener("click", () => {
-        this.decreaseItemCount(item, itemCounter, itemHTML, itemIndex);
-      });
-      const buttonRemoveItem = document.querySelector(
-        `#remove-item-button-${itemIndex}`
-      );
-      buttonRemoveItem.addEventListener("click", () =>
-        this.removeItem(item, itemHTML)
-      );
+      renderer.renderItems(this.items);
     }
-    this.getTotalPrice();
+    this.getTotalPrice(this.items);
   }
 
-  increaseItemCount(item, itemCounter) {
+  increaseItemCount(item, itemIndex, itemCounter) {
     let count = parseInt(itemCounter.innerText);
     count++;
     itemCounter.innerText = count;
     this.items.push(item);
-    this.getTotalPrice();
-    console.log(this.items);
+    LocalStorageHandler.setItem(item, itemIndex);
+    this.getTotalPrice(this.items);
   }
 
   decreaseItemCount(item, itemCounter, itemHTML, itemIndex) {
@@ -155,34 +165,34 @@ class ShoppingCart {
       count--;
       itemCounter.innerText = count;
       this.items.splice(itemIndex, 1);
+      LocalStorageHandler.removeItem(itemIndex);
     } else if (count === 1) {
-      this.removeItem(item, itemHTML);
+      this.removeItem(item, itemIndex, itemHTML);
     }
-    this.getTotalPrice();
-    console.log(this.items);
+    this.getTotalPrice(this.items);
   }
 
-  removeItem(item, itemHTML) {
+  removeItem(item, itemIndex, itemHTML) {
     const itemIdToRemove = item.id;
     for (let i = this.items.length - 1; i >= 0; i--) {
       if (this.items[i].id === itemIdToRemove) {
         this.items.splice(i, 1);
+        LocalStorageHandler.removeItem(itemIndex);
       }
     }
     itemHTML.remove();
-    this.getTotalPrice();
-    console.log(this.items);
+    this.getTotalPrice(this.items);
   }
 
-  getTotalPrice() {
+  getTotalPrice(items) {
     const shoppingCartTotalPrice = document.querySelector(
       "#shoppingCartTotalPrice"
     );
-    if (this.items.length === 0) {
+    if (items.length === 0) {
       shoppingCartTotalPrice.innerText = "0.00";
     } else {
       let totalPrice = 0;
-      this.items.forEach((item) => {
+      items.forEach((item) => {
         totalPrice += item.price;
       });
       shoppingCartTotalPrice.innerText = totalPrice.toFixed(2);
@@ -230,7 +240,7 @@ class FilterProductName {
         const productName = product.name.toLowerCase();
         return productName.includes(userInput);
       });
-      productsRenderer.renderProducts(filteredProducts);
+      renderer.renderProducts(filteredProducts);
     });
   }
 }
@@ -281,7 +291,7 @@ class FilterProductCompany {
 
   getAllCompaniesProducts() {
     DataFetcher.fetchData().then((data) => {
-      productsRenderer.renderProducts(data.products);
+      renderer.renderProducts(data.products);
     });
   }
 
@@ -290,7 +300,7 @@ class FilterProductCompany {
       const filteredProducts = data.products.filter((product) => {
         return product.company.includes("Ikea");
       });
-      productsRenderer.renderProducts(filteredProducts);
+      renderer.renderProducts(filteredProducts);
     });
   }
 
@@ -299,7 +309,7 @@ class FilterProductCompany {
       const filteredProducts = data.products.filter((product) => {
         return product.company.includes("Marcos");
       });
-      productsRenderer.renderProducts(filteredProducts);
+      renderer.renderProducts(filteredProducts);
     });
   }
 
@@ -308,7 +318,7 @@ class FilterProductCompany {
       const filteredProducts = data.products.filter((product) => {
         return product.company.includes("Caressa");
       });
-      productsRenderer.renderProducts(filteredProducts);
+      renderer.renderProducts(filteredProducts);
     });
   }
 
@@ -317,7 +327,7 @@ class FilterProductCompany {
       const filteredProducts = data.products.filter((product) => {
         return product.company.includes("Liddy");
       });
-      productsRenderer.renderProducts(filteredProducts);
+      renderer.renderProducts(filteredProducts);
     });
   }
 }
@@ -337,19 +347,40 @@ class FilterProductPrice {
       const filteredProducts = data.products.filter((product) => {
         return product.price < priceInput;
       });
-      productsRenderer.renderProducts(filteredProducts);
+      renderer.renderProducts(filteredProducts);
     });
   }
 }
 
-const shoppingCart = new ShoppingCart();
-const productsRenderer = new ProductsRenderer("container");
+class LocalStorageHandler {
+  static getItems() {
+    const localStorageItems = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const itemKey = localStorage.key(i);
+      const itemValue = localStorage.getItem(itemKey);
+      localStorageItems.push(JSON.parse(itemValue));
+    }
+    return localStorageItems;
+  }
+
+  static setItem(itemIndex, item) {
+    localStorage.setItem(itemIndex, JSON.stringify(item));
+  }
+
+  static removeItem(itemIndex) {
+    localStorage.removeItem(itemIndex);
+  }
+}
+
+const renderer = new Renderer("productsContainer", "itemsContainer");
 DataFetcher.fetchData().then((data) => {
   data.products.map((productData) => {
     Product.createProduct(productData);
   });
-  productsRenderer.renderProducts(data.products);
+  renderer.renderProducts(data.products);
 });
+const shoppingCart = new ShoppingCart();
+renderer.renderItems(LocalStorageHandler.getItems());
 const filterProductName = new FilterProductName("#inputElement");
 const filterProductCompany = new FilterProductCompany(
   "#buttonAllCompanies",
