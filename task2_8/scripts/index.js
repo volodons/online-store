@@ -105,7 +105,14 @@ class Renderer {
         shoppingCart.removeItem(item, itemIndex, itemHTML)
       );
     }
-    shoppingCart.getTotalPrice(items);
+    shoppingCart.countTotalPrice(items);
+  }
+
+  renderTotalPrice(totalPrice) {
+    const shoppingCartTotalPrice = document.querySelector(
+      "#shoppingCartTotalPrice"
+    );
+    shoppingCartTotalPrice.innerText = totalPrice;
   }
 }
 
@@ -147,7 +154,7 @@ class ShoppingCart {
     } else {
       renderer.renderItems(this.items);
     }
-    this.getTotalPrice(this.items);
+    this.countTotalPrice(this.items);
   }
 
   increaseItemCount(item, itemIndex, itemCounter) {
@@ -156,7 +163,7 @@ class ShoppingCart {
     itemCounter.innerText = count;
     this.items.push(item);
     LocalStorageHandler.setItem(item, itemIndex);
-    this.getTotalPrice(this.items);
+    this.countTotalPrice(this.items);
   }
 
   decreaseItemCount(item, itemCounter, itemHTML, itemIndex) {
@@ -169,7 +176,7 @@ class ShoppingCart {
     } else if (count === 1) {
       this.removeItem(item, itemIndex, itemHTML);
     }
-    this.getTotalPrice(this.items);
+    this.countTotalPrice(this.items);
   }
 
   removeItem(item, itemIndex, itemHTML) {
@@ -181,21 +188,20 @@ class ShoppingCart {
       }
     }
     itemHTML.remove();
-    this.getTotalPrice(this.items);
+    this.countTotalPrice(this.items);
   }
 
-  getTotalPrice(items) {
-    const shoppingCartTotalPrice = document.querySelector(
-      "#shoppingCartTotalPrice"
-    );
+  countTotalPrice(items) {
+    let totalPrice = "0.00";
     if (items.length === 0) {
-      shoppingCartTotalPrice.innerText = "0.00";
+      renderer.renderTotalPrice(totalPrice);
     } else {
-      let totalPrice = 0;
+      totalPrice = parseInt(totalPrice);
       items.forEach((item) => {
         totalPrice += item.price;
       });
-      shoppingCartTotalPrice.innerText = totalPrice.toFixed(2);
+      totalPrice = totalPrice.toFixed(2);
+      renderer.renderTotalPrice(totalPrice);
     }
   }
 
