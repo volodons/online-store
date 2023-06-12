@@ -17,13 +17,14 @@ class ShoppingCart {
       const shoppingItemCounter = document.querySelector(
         `#shopping-item-counter-${existingItemIndex}`
       );
-      let count = parseInt(shoppingItemCounter.textContent);
+      let count = parseInt(shoppingItemCounter.innerText);
       count++;
-      shoppingItemCounter.textContent = count;
+      shoppingItemCounter.innerText = count;
     } else {
       Renderer.renderItems(this.items);
     }
     this.countTotalPrice(this.items);
+    Renderer.renderTotalItemCount(this.items);
   }
 
   increaseItemCount(item, itemIndex, itemCounter) {
@@ -33,6 +34,7 @@ class ShoppingCart {
     this.items.push(item);
     LocalStorageHandler.setItem(item, itemIndex);
     this.countTotalPrice(this.items);
+    Renderer.renderTotalItemCount(this.items);
   }
 
   decreaseItemCount(item, itemCounter, itemHTML, itemIndex) {
@@ -46,6 +48,7 @@ class ShoppingCart {
       this.removeItem(item, itemIndex, itemHTML);
     }
     this.countTotalPrice(this.items);
+    Renderer.renderTotalItemCount(this.items);
   }
 
   removeItem(item, itemIndex, itemHTML) {
@@ -58,6 +61,7 @@ class ShoppingCart {
     }
     itemHTML.remove();
     this.countTotalPrice(this.items);
+    Renderer.renderTotalItemCount(this.items);
   }
 
   countTotalPrice(items) {
@@ -78,6 +82,7 @@ class ShoppingCart {
     this.items = [];
     LocalStorageHandler.removeAllItems();
     Renderer.renderItems(this.items);
+    Renderer.renderTotalItemCount(this.items);
   }
 }
 

@@ -10,7 +10,7 @@ class LocalStorageHandler {
   }
 
   static setItem(itemIndex, item) {
-    localStorage.setItem(itemIndex, JSON.stringify(item));
+    localStorage.setItem(JSON.stringify(itemIndex), JSON.stringify(item));
   }
 
   static removeItem(itemIndex) {

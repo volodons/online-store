@@ -91,6 +91,7 @@ class Renderer {
       }
     }
     shoppingCart.countTotalPrice(items);
+    this.renderTotalItemCount(items);
   }
 
   static renderTotalPrice(totalPrice) {
@@ -99,10 +100,15 @@ class Renderer {
     );
     shoppingCartTotalPrice.innerText = totalPrice;
   }
+
+  static renderTotalItemCount(items) {
+    shoppingCartItemCounter.innerText = items.length;
+  }
 }
 
 const overlayThemeToggler = document.querySelector("#overlay");
 const shoppingCartContainer = document.querySelector(".shopping-cart");
+const shoppingCartItemCounter = document.querySelector("#cartItemCounter");
 const buttonOpenShoppingCartContainer = document.querySelector(
   ".shopping-cart-button"
 );

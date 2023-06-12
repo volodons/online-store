@@ -65,6 +65,10 @@ body {
   left: 45%;
 }
 
+.shopping-cart-button-counter-wrapper {
+  position: relative;
+}
+
 .shopping-cart-button {
   height: 32px;
   width: 32px;
@@ -79,6 +83,21 @@ body {
 
 .shopping-cart-button--blue {
   background-image: url("../images/shopping-cart-blue.png");
+}
+
+.shopping-cart-button__counter {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: -10%;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+  background-color: #ba5d2c;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
 }
 
 .header__text {
