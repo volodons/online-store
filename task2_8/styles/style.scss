@@ -129,28 +129,25 @@ body {
 }
 
 .product {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: stretch;
-  line-height: 0;
+  line-height: 0.5;
 }
 
 .product__image {
   border-radius: 10px;
 }
 
+.product-info {
+  display: flex;
+  justify-content: space-between;
+}
+
 .add-to-cart-button {
-  position: absolute;
   height: 32px;
   width: 32px;
   border: none;
   background-color: transparent;
   background-image: url("../images/add-to-cart-icon.png");
   cursor: pointer;
-  top: 75%;
-  right: 0;
 }
 
 .product__name {

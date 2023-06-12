@@ -15,9 +15,14 @@ class Renderer {
           alt="${product.name}"
           title="${product.name}"
         />
-        <button id="add-to-cart-button-${productIndex}" class="add-to-cart-button"></button>
-        <h2 class="product__name">${product.name}</h2>
-        <p class="product__price">$${product.price}</p>`;
+        <section class="product-info">
+          <section class="product-description">
+            <h2 class="product__name">${product.name}</h2>
+            <p class="product__price">$${product.price}</p>
+          </section>
+          <button id="add-to-cart-button-${productIndex}" 
+          class="add-to-cart-button"></button>
+        </section>`;
       productsContainer.append(productElement);
       const buttonAddToCart = document.querySelector(
         `#add-to-cart-button-${productIndex}`
