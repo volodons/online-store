@@ -27,7 +27,7 @@ body {
 .header-homepage {
   position: relative;
   height: 90vh;
-  background-image: url(../images/homepage-background.jpg);
+  background-image: url("../images/homepage-background.jpg");
   background-size: cover;
   color: $header-homepage-text-color;
 }
