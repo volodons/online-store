@@ -185,8 +185,8 @@ body {
 }
 
 .about-us-section {
-  padding-left: 16rem;
-  padding-right: 16rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
   color: #627e99;
 }
 
@@ -286,7 +286,6 @@ body {
 .shopping-cart__items-wrapper {
   height: 60vh;
   overflow-y: auto;
-  margin-bottom: 2rem;
 }
 
 .shopping-cart__item {
@@ -347,9 +346,10 @@ body {
 }
 
 .shopping-cart__footer {
-  position: absolute;
-  bottom: 10%;
-  left: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .shopping-cart__checkout-button {
@@ -464,4 +464,99 @@ input[type=range]:focus::-ms-fill-lower {
 
 input[type=range]:focus::-ms-fill-upper {
   background: #0175ff;
+}
+
+@media (max-width: 996px) {
+  .filters-products-wrapper {
+    column-gap: 0;
+  }
+}
+@media (max-width: 915px) {
+  .shopping-cart {
+    width: 35vw;
+  }
+}
+@media (max-width: 775px) {
+  .heading-custom--centered {
+    left: 60%;
+  }
+  .about-us-section {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  .shopping-cart {
+    width: 40vw;
+  }
+}
+@media (max-width: 730px) {
+  .featured-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (max-width: 700px) {
+  .filters-products-wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+@media (max-width: 690px) {
+  .shopping-cart {
+    width: 45vw;
+  }
+}
+@media (max-width: 625px) {
+  .header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .nav {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .about-us-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+@media (max-width: 610px) {
+  .shopping-cart {
+    width: 50vw;
+  }
+}
+@media (max-width: 575px) {
+  .shopping-cart {
+    width: 90vw;
+    right: -110vw;
+  }
+  .shopping-cart--open {
+    transform: translateX(-110vw);
+  }
+}
+@media (max-width: 590px) {
+  .filters-products-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+    padding-right: 0;
+    row-gap: 3rem;
+  }
+}
+@media (max-width: 525px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+  }
+  .heading-custom--centered {
+    position: static;
+  }
 }/*# sourceMappingURL=style.css.map */
