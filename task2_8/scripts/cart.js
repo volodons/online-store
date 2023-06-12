@@ -76,6 +76,8 @@ class ShoppingCart {
 
   clearCart() {
     this.items = [];
+    LocalStorageHandler.removeAllItems();
+    Renderer.renderItems(this.items);
   }
 }
 

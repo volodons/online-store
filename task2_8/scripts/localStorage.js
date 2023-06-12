@@ -16,6 +16,10 @@ class LocalStorageHandler {
   static removeItem(itemIndex) {
     localStorage.removeItem(itemIndex);
   }
+
+  static removeAllItems() {
+    localStorage.clear();
+  }
 }
 
 export { LocalStorageHandler };

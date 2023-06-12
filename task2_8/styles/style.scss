@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: $custom-text-font;
-  src: url(../fonts/kaushanscript/KaushanScript-Regular.otf);
+  src: url("../fonts/kaushanscript/KaushanScript-Regular.otf");
 }
 
 .overlay-theme {
@@ -77,11 +77,11 @@ body {
 }
 
 .shopping-cart-button--white {
-  background-image: url(../images/shopping-cart-white.png);
+  background-image: url("../images/shopping-cart-white.png");
 }
 
 .shopping-cart-button--blue {
-  background-image: url(../images/shopping-cart-blue.png);
+  background-image: url("../images/shopping-cart-blue.png");
 }
 
 .header__text {
@@ -147,7 +147,7 @@ body {
   width: 32px;
   border: none;
   background-color: transparent;
-  background-image: url(../images/add-to-cart-icon.png);
+  background-image: url("../images/add-to-cart-icon.png");
   cursor: pointer;
   top: 75%;
   right: 0;
@@ -257,12 +257,26 @@ body {
   transform: translateX(-60vw);
 }
 
+.shopping-cart-icons-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
 .close-icon {
   height: 32px;
   width: 32px;
   border: none;
   background-color: $nav-background-color;
-  background-image: url(../images/close-icon.png);
+  background-image: url("../images/close-icon.png");
+  cursor: pointer;
+}
+
+.clear-cart-icon {
+  height: 32px;
+  width: 32px;
+  border: none;
+  background-color: $nav-background-color;
+  background-image: url("../images/clear-cart-icon.png");
   cursor: pointer;
 }
 

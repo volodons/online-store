@@ -31,12 +31,13 @@ class Renderer {
   static renderItems(items) {
     const itemsContainer = document.getElementById("itemsContainer");
     itemsContainer.innerHTML = "";
-    for (let i = 0; i < items.length; i++) {
-      const itemIndex = i;
-      const item = items[itemIndex];
-      const itemHTML = document.createElement("article");
-      itemHTML.classList.add("shopping-cart__item");
-      itemHTML.innerHTML = `
+    if (items.length > 0) {
+      for (let i = 0; i < items.length; i++) {
+        const itemIndex = i;
+        const item = items[itemIndex];
+        const itemHTML = document.createElement("article");
+        itemHTML.classList.add("shopping-cart__item");
+        itemHTML.innerHTML = `
         <section class="shopping-cart__item-wrapper">
           <img
             class="shopping-cart__item-image"
@@ -55,28 +56,34 @@ class Renderer {
           <span id="shopping-item-counter-${itemIndex}">1</span>
           <button id="decreaseItemCount-${itemIndex}" class="arrow">&#8897;</button>
         </section>`;
-      itemsContainer.append(itemHTML);
-      const itemCounter = document.querySelector(
-        `#shopping-item-counter-${itemIndex}`
-      );
-      const buttonIncreaseItemCount = document.querySelector(
-        `#increaseItemCount-${itemIndex}`
-      );
-      buttonIncreaseItemCount.addEventListener("click", () => {
-        shoppingCart.increaseItemCount(item, itemIndex, itemCounter);
-      });
-      const buttonDecreaseItemCount = document.querySelector(
-        `#decreaseItemCount-${itemIndex}`
-      );
-      buttonDecreaseItemCount.addEventListener("click", () => {
-        shoppingCart.decreaseItemCount(item, itemCounter, itemHTML, itemIndex);
-      });
-      const buttonRemoveItem = document.querySelector(
-        `#remove-item-button-${itemIndex}`
-      );
-      buttonRemoveItem.addEventListener("click", () =>
-        shoppingCart.removeItem(item, itemIndex, itemHTML)
-      );
+        itemsContainer.append(itemHTML);
+        const itemCounter = document.querySelector(
+          `#shopping-item-counter-${itemIndex}`
+        );
+        const buttonIncreaseItemCount = document.querySelector(
+          `#increaseItemCount-${itemIndex}`
+        );
+        buttonIncreaseItemCount.addEventListener("click", () => {
+          shoppingCart.increaseItemCount(item, itemIndex, itemCounter);
+        });
+        const buttonDecreaseItemCount = document.querySelector(
+          `#decreaseItemCount-${itemIndex}`
+        );
+        buttonDecreaseItemCount.addEventListener("click", () => {
+          shoppingCart.decreaseItemCount(
+            item,
+            itemCounter,
+            itemHTML,
+            itemIndex
+          );
+        });
+        const buttonRemoveItem = document.querySelector(
+          `#remove-item-button-${itemIndex}`
+        );
+        buttonRemoveItem.addEventListener("click", () =>
+          shoppingCart.removeItem(item, itemIndex, itemHTML)
+        );
+      }
     }
     shoppingCart.countTotalPrice(items);
   }
@@ -95,6 +102,7 @@ const buttonOpenShoppingCartContainer = document.querySelector(
   ".shopping-cart-button"
 );
 const buttonCloseShoppingCartContainer = document.querySelector(".close-icon");
+const buttonClearShoppingCart = document.querySelector(".clear-cart-icon");
 const rangeInput = document.querySelector("#rangeInput");
 const rangePrice = document.querySelector("#rangePrice");
 
@@ -106,6 +114,7 @@ buttonCloseShoppingCartContainer.addEventListener("click", () => {
   overlayThemeToggler.classList.toggle("overlay-theme");
   shoppingCartContainer.classList.toggle("shopping-cart--open");
 });
+buttonClearShoppingCart.addEventListener("click", shoppingCart.clearCart);
 rangeInput.addEventListener("input", () => {
   rangePrice.innerText = rangeInput.value;
 });
