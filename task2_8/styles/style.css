@@ -239,6 +239,9 @@ body {
 }
 
 .shopping-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 30vw;
   min-height: 100vh;
   position: fixed;
@@ -350,6 +353,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .shopping-cart__checkout-button {
