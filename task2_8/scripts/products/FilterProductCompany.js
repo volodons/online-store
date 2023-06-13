@@ -96,3 +96,5 @@ const filterProductCompany = new FilterProductCompany(
   "#buttonCompanyCaressa",
   "#buttonCompanyLiddy"
 );
+
+export { filterProductCompany };

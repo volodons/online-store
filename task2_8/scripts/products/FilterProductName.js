@@ -38,3 +38,5 @@ class FilterProductName {
 }
 
 const filterProductName = new FilterProductName("#inputElement");
+
+export { filterProductName };

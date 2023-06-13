@@ -35,3 +35,5 @@ class FilterProductPrice {
 }
 
 const filterProductPrice = new FilterProductPrice("#rangeInput", "#rangePrice");
+
+export { filterProductPrice };
