@@ -1,46 +1,5 @@
-import { Renderer } from "./ui.js";
-import { DataFetcher } from "./data.js";
-
-class Product {
-  static createProduct(productData) {
-    return new Product(
-      productData.id,
-      productData.company,
-      productData.name,
-      productData.price,
-      productData.image
-    );
-  }
-}
-
-class FilterProductName {
-  constructor(inputElement) {
-    this.inputElement = document.querySelector(inputElement);
-    this.debouncedGetProductByName = this.debounce(this.getProductByName, 300);
-    this.inputElement.addEventListener("input", this.debouncedGetProductByName);
-  }
-
-  debounce(func, delay) {
-    let timer;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, arguments);
-      }, delay);
-    };
-  }
-
-  getProductByName() {
-    const userInput = inputElement.value.toLowerCase();
-    DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        const productName = product.name.toLowerCase();
-        return productName.includes(userInput);
-      });
-      Renderer.renderProducts(filteredProducts);
-    });
-  }
-}
+import { Renderer } from "../ui.js";
+import { DataFetcher } from "../data.js";
 
 class FilterProductCompany {
   constructor(
@@ -129,41 +88,6 @@ class FilterProductCompany {
   }
 }
 
-class FilterProductPrice {
-  constructor(rangeInput, rangePrice) {
-    this.rangeInput = rangeInput;
-    this.rangePrice = rangePrice;
-    rangeInput = document.querySelector("#rangeInput");
-    rangePrice = document.querySelector("#rangePrice");
-    this.debouncedGetProductsByPrice = this.debounce(
-      this.getProductsByPrice,
-      300
-    );
-    rangeInput.addEventListener("input", this.debouncedGetProductsByPrice);
-  }
-
-  debounce(func, delay) {
-    let timer;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, arguments);
-      }, delay);
-    };
-  }
-
-  getProductsByPrice() {
-    const priceInput = rangeInput.value;
-    DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        return product.price < priceInput;
-      });
-      Renderer.renderProducts(filteredProducts);
-    });
-  }
-}
-
-const filterProductName = new FilterProductName("#inputElement");
 const filterProductCompany = new FilterProductCompany(
   "#buttonAllCompanies",
   "#buttonCompanyIkea",
@@ -171,6 +95,3 @@ const filterProductCompany = new FilterProductCompany(
   "#buttonCompanyCaressa",
   "#buttonCompanyLiddy"
 );
-const filterProductPrice = new FilterProductPrice("#rangeInput", "#rangePrice");
-
-export { Product };
