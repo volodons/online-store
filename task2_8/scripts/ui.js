@@ -1,4 +1,6 @@
-import { shoppingCart } from "./cart.js";
+import { ShoppingCart } from "./cart.js";
+
+const shoppingCart = new ShoppingCart();
 
 class Renderer {
   static renderProducts(products) {

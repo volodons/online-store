@@ -20,7 +20,7 @@ class FilterProductName {
   }
 
   getProductByName() {
-    const userInput = this.inputElement.value.toLowerCase();
+    const userInput = inputElement.value.toLowerCase();
     const filteredProducts = state.renderedProducts.filter((product) => {
       const productName = product.name.toLowerCase();
       return productName.includes(userInput);
@@ -37,6 +37,4 @@ class FilterProductName {
   }
 }
 
-const filterProductName = new FilterProductName("#inputElement");
-
-export { filterProductName };
+export { FilterProductName };

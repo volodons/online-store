@@ -24,7 +24,7 @@ class FilterProductPrice {
   }
 
   getProductsByPrice() {
-    const priceInput = this.rangeInput.value;
+    const priceInput = rangeInput.value;
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
         return product.price < priceInput;
@@ -34,6 +34,4 @@ class FilterProductPrice {
   }
 }
 
-const filterProductPrice = new FilterProductPrice("#rangeInput", "#rangePrice");
-
-export { filterProductPrice };
+export { FilterProductPrice };

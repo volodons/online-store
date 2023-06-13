@@ -89,12 +89,4 @@ class FilterProductCompany {
   }
 }
 
-const filterProductCompany = new FilterProductCompany(
-  "#buttonAllCompanies",
-  "#buttonCompanyIkea",
-  "#buttonCompanyMarcos",
-  "#buttonCompanyCaressa",
-  "#buttonCompanyLiddy"
-);
-
-export { filterProductCompany };
+export { FilterProductCompany };

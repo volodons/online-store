@@ -3,9 +3,10 @@ import { Renderer } from "./ui.js";
 import { DataFetcher } from "./data.js";
 import { Product } from "./products/Product.js";
 import { state } from "./state.js";
-import { filterProductName } from "./products/FilterProductName.js";
-import { filterProductCompany } from "./products/FilterProductCompany.js";
-import { filterProductPrice } from "./products/FilterProductPrice.js";
+
+import { FilterProductName } from "./products/FilterProductName.js";
+import { FilterProductCompany } from "./products/FilterProductCompany.js";
+import { FilterProductPrice } from "./products/FilterProductPrice.js";
 
 DataFetcher.fetchData().then((data) => {
   data.products.map((product) => {
@@ -15,3 +16,13 @@ DataFetcher.fetchData().then((data) => {
   Renderer.renderProducts(data.products);
 });
 Renderer.renderItems(LocalStorageHandler.getItems("cart") || []);
+
+const filterProductCompany = new FilterProductCompany(
+  "#buttonAllCompanies",
+  "#buttonCompanyIkea",
+  "#buttonCompanyMarcos",
+  "#buttonCompanyCaressa",
+  "#buttonCompanyLiddy"
+);
+const filterProductName = new FilterProductName("#inputElement");
+const filterProductPrice = new FilterProductPrice("#rangeInput", "#rangePrice");

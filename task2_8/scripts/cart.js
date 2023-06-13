@@ -86,6 +86,4 @@ class ShoppingCart {
   }
 }
 
-const shoppingCart = new ShoppingCart();
-
-export { shoppingCart };
+export { ShoppingCart };
