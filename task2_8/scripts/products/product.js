@@ -1,11 +1,11 @@
 class Product {
-  static createProduct(productData) {
+  static createProduct(product) {
     return new Product(
-      productData.id,
-      productData.company,
-      productData.name,
-      productData.price,
-      productData.image
+      product.id,
+      product.company,
+      product.name,
+      product.price,
+      product.image
     );
   }
 }

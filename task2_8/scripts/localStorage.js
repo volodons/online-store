@@ -1,6 +1,6 @@
 class LocalStorageHandler {
-  static getItems() {
-    const localStorageKey = localStorage.key("cart");
+  static getItems(key) {
+    const localStorageKey = localStorage.key(key);
     const localStorageValueJSON = localStorage.getItem(localStorageKey);
     const localStorageValue = JSON.parse(localStorageValueJSON);
     return localStorageValue;

@@ -1,5 +1,6 @@
 import { Renderer } from "../ui.js";
 import { DataFetcher } from "../data.js";
+import { state } from "../state.js";
 
 class FilterProductName {
   constructor(inputElement) {
@@ -19,14 +20,20 @@ class FilterProductName {
   }
 
   getProductByName() {
-    const userInput = inputElement.value.toLowerCase();
-    DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        const productName = product.name.toLowerCase();
-        return productName.includes(userInput);
-      });
-      Renderer.renderProducts(filteredProducts);
+    const userInput = this.inputElement.value.toLowerCase();
+    const filteredProducts = state.renderedProducts.filter((product) => {
+      const productName = product.name.toLowerCase();
+      return productName.includes(userInput);
     });
+    Renderer.renderProducts(filteredProducts);
+    state.updateState(filteredProducts);
+    // DataFetcher.fetchData().then((data) => {
+    //   const filteredProducts = data.products.filter((product) => {
+    //     const productName = product.name.toLowerCase();
+    //     return productName.includes(userInput);
+    //   });
+    //   Renderer.renderProducts(filteredProducts);
+    // });
   }
 }
 

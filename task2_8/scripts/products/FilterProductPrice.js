@@ -1,17 +1,16 @@
 import { Renderer } from "../ui.js";
 import { DataFetcher } from "../data.js";
+import { state } from "../state.js";
 
 class FilterProductPrice {
   constructor(rangeInput, rangePrice) {
-    this.rangeInput = rangeInput;
-    this.rangePrice = rangePrice;
-    rangeInput = document.querySelector("#rangeInput");
-    rangePrice = document.querySelector("#rangePrice");
+    this.rangeInput = document.querySelector(rangeInput);
+    this.rangePrice = document.querySelector(rangePrice);
     this.debouncedGetProductsByPrice = this.debounce(
       this.getProductsByPrice,
       300
     );
-    rangeInput.addEventListener("input", this.debouncedGetProductsByPrice);
+    this.rangeInput.addEventListener("input", this.debouncedGetProductsByPrice);
   }
 
   debounce(func, delay) {
@@ -25,7 +24,7 @@ class FilterProductPrice {
   }
 
   getProductsByPrice() {
-    const priceInput = rangeInput.value;
+    const priceInput = this.rangeInput.value;
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
         return product.price < priceInput;

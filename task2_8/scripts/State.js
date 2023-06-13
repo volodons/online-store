@@ -3,8 +3,13 @@ class State {
     this.renderedProducts = [];
   }
 
-  setInitialState(data) {
-    this.renderedProducts.push(data);
+  setInitialState(products) {
+    this.renderedProducts.push(products);
+  }
+
+  updateState(products) {
+    this.renderedProducts.length = 0;
+    this.renderedProducts.push(products);
   }
 }
 

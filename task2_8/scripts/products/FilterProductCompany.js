@@ -1,5 +1,6 @@
 import { Renderer } from "../ui.js";
 import { DataFetcher } from "../data.js";
+import { state } from "../state.js";
 
 class FilterProductCompany {
   constructor(

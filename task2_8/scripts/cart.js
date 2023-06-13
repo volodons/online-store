@@ -3,7 +3,7 @@ import { Renderer } from "./ui.js";
 
 class ShoppingCart {
   constructor() {
-    this.items = LocalStorageHandler.getItems() || [];
+    this.items = LocalStorageHandler.getItems("cart") || [];
   }
 
   addItem(item) {
