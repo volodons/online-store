@@ -557,16 +557,6 @@ input[type="range"]:focus::-ms-fill-upper {
   }
 }
 
-@media (max-width: 575px) {
-  .shopping-cart {
-    width: 90vw;
-    right: -110vw;
-  }
-  .shopping-cart--open {
-    transform: translateX(-110vw);
-  }
-}
-
 @media (max-width: 590px) {
   .filters-products-wrapper {
     display: flex;
@@ -576,6 +566,16 @@ input[type="range"]:focus::-ms-fill-upper {
     padding-left: 0;
     padding-right: 0;
     row-gap: 3rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .shopping-cart {
+    width: 90vw;
+    right: -110vw;
+  }
+  .shopping-cart--open {
+    transform: translateX(-110vw);
   }
 }
 
