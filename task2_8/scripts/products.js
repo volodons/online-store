@@ -135,7 +135,21 @@ class FilterProductPrice {
     this.rangePrice = rangePrice;
     rangeInput = document.querySelector("#rangeInput");
     rangePrice = document.querySelector("#rangePrice");
-    rangeInput.addEventListener("input", this.getProductsByPrice);
+    this.debouncedGetProductsByPrice = this.debounce(
+      this.getProductsByPrice,
+      300
+    );
+    rangeInput.addEventListener("input", this.debouncedGetProductsByPrice);
+  }
+
+  debounce(func, delay) {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, arguments);
+      }, delay);
+    };
   }
 
   getProductsByPrice() {
