@@ -1,24 +1,20 @@
 class LocalStorageHandler {
   static getItems() {
-    const localStorageItems = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const itemKey = localStorage.key(i);
-      const itemValue = localStorage.getItem(itemKey);
-      localStorageItems.push(JSON.parse(itemValue));
-    }
-    return localStorageItems;
+    const localStorageKey = localStorage.key("cart");
+    const localStorageValueJSON = localStorage.getItem(localStorageKey);
+    const localStorageValue = JSON.parse(localStorageValueJSON);
+    return localStorageValue;
   }
 
-  static setItem(itemIndex, item) {
-    localStorage.setItem(JSON.stringify(itemIndex), JSON.stringify(item));
+  static setItems(localStorageKey, localStorageValue) {
+    localStorage.setItem(
+      JSON.stringify(localStorageKey),
+      JSON.stringify(localStorageValue)
+    );
   }
 
-  static removeItem(itemIndex) {
-    localStorage.removeItem(itemIndex);
-  }
-
-  static removeAllItems() {
-    localStorage.clear();
+  static removeItems(localStorageKey) {
+    localStorage.removeItem(localStorageKey);
   }
 }
 

@@ -12,7 +12,7 @@ class ShoppingCart {
     );
     this.items.push(item);
     const itemIndex = this.items.length - 1;
-    LocalStorageHandler.setItem(itemIndex, item);
+    LocalStorageHandler.setItems("cart", this.items);
     if (existingItemIndex !== -1) {
       const shoppingItemCounter = document.querySelector(
         `#shopping-item-counter-${existingItemIndex}`
@@ -32,7 +32,7 @@ class ShoppingCart {
     count++;
     itemCounter.innerText = count;
     this.items.push(item);
-    LocalStorageHandler.setItem(item, itemIndex);
+    LocalStorageHandler.setItems("cart", this.items);
     this.countTotalPrice(this.items);
     Renderer.renderTotalItemCount(this.items);
   }
@@ -43,7 +43,7 @@ class ShoppingCart {
       count--;
       itemCounter.innerText = count;
       this.items.splice(itemIndex, 1);
-      LocalStorageHandler.removeItem(itemIndex);
+      LocalStorageHandler.setItems("cart", this.items);
     } else if (count === 1) {
       this.removeItem(item, itemIndex, itemHTML);
     }
@@ -56,7 +56,7 @@ class ShoppingCart {
     for (let i = this.items.length - 1; i >= 0; i--) {
       if (this.items[i].id === itemIdToRemove) {
         this.items.splice(i, 1);
-        LocalStorageHandler.removeItem(itemIndex);
+        LocalStorageHandler.setItems("cart", this.items);
       }
     }
     itemHTML.remove();
@@ -80,7 +80,7 @@ class ShoppingCart {
 
   clearCart() {
     this.items = [];
-    LocalStorageHandler.removeAllItems();
+    LocalStorageHandler.removeItems("cart");
     Renderer.renderItems(this.items);
     Renderer.renderTotalItemCount(this.items);
   }

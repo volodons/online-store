@@ -9,4 +9,4 @@ DataFetcher.fetchData().then((data) => {
   });
   Renderer.renderProducts(data.products);
 });
-Renderer.renderItems(LocalStorageHandler.getItems());
+Renderer.renderItems(LocalStorageHandler.getItems() || []);

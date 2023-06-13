@@ -43,24 +43,24 @@ class Renderer {
         const itemHTML = document.createElement("article");
         itemHTML.classList.add("shopping-cart__item");
         itemHTML.innerHTML = `
-        <section class="shopping-cart__item-wrapper">
-          <img
-            class="shopping-cart__item-image"
-            src="${items[itemIndex].image}"
-            alt="${items[itemIndex].name}"
-            title="${items[itemIndex].name}"
-          />
-        <section class="shopping-cart__item-info">
-          <p class="shopping-cart__item-name">${items[itemIndex].name}</p>
-          <p class="shopping-cart__item-price">$${items[itemIndex].price}</p>
-          <button id="remove-item-button-${itemIndex}" class="shopping-cart__item-remove-button">remove</button>
-        </section>
-        </section>
-        <section class="shopping-cart__item-count">
-          <button id="increaseItemCount-${itemIndex}" class="arrow">&#8896;</button>
-          <span id="shopping-item-counter-${itemIndex}">1</span>
-          <button id="decreaseItemCount-${itemIndex}" class="arrow">&#8897;</button>
-        </section>`;
+          <section class="shopping-cart__item-wrapper">
+            <img
+              class="shopping-cart__item-image"
+              src="${items[itemIndex].image}"
+              alt="${items[itemIndex].name}"
+              title="${items[itemIndex].name}"
+            />
+          <section class="shopping-cart__item-info">
+            <p class="shopping-cart__item-name">${items[itemIndex].name}</p>
+            <p class="shopping-cart__item-price">$${items[itemIndex].price}</p>
+            <button id="remove-item-button-${itemIndex}" class="shopping-cart__item-remove-button">remove</button>
+          </section>
+          </section>
+          <section class="shopping-cart__item-count">
+            <button id="increaseItemCount-${itemIndex}" class="arrow">&#8896;</button>
+            <span id="shopping-item-counter-${itemIndex}">1</span>
+            <button id="decreaseItemCount-${itemIndex}" class="arrow">&#8897;</button>
+          </section>`;
         itemsContainer.append(itemHTML);
         const itemCounter = document.querySelector(
           `#shopping-item-counter-${itemIndex}`
