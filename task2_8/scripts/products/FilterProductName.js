@@ -25,6 +25,7 @@ class FilterProductName {
       const productName = product.name.toLowerCase();
       return productName.includes(userInput);
     });
+    console.log(filteredProducts);
     Renderer.renderProducts(filteredProducts);
     state.updateState(filteredProducts);
     // DataFetcher.fetchData().then((data) => {

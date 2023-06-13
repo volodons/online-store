@@ -8,8 +8,11 @@ class State {
   }
 
   updateState(products) {
-    this.renderedProducts.length = 0;
-    this.renderedProducts.push(products);
+    this.renderedProducts = products;
+    // this.renderedProducts.length = 0;
+    // this.renderedProducts.push(products);
+    // console.log(products);
+    console.log(this.renderedProducts);
   }
 }
 
