@@ -7,6 +7,7 @@ class FilterProductName {
     this.inputElement = document.querySelector(inputElement);
     this.debouncedGetProductByName = this.debounce(this.getProductByName, 300);
     this.inputElement.addEventListener("input", this.debouncedGetProductByName);
+    this.selectedName = null;
   }
 
   debounce(func, delay) {
@@ -21,21 +22,16 @@ class FilterProductName {
 
   getProductByName() {
     const userInput = inputElement.value.toLowerCase();
-    const filteredProducts = state.renderedProducts.filter((product) => {
-      const productName = product.name.toLowerCase();
-      return productName.includes(userInput);
+    this.selectedName = userInput;
+    DataFetcher.fetchData().then((data) => {
+      const filteredProducts = data.products.filter((product) => {
+        return product.company.includes(userInput);
+      });
+      Renderer.renderProducts(filteredProducts);
     });
-    console.log(filteredProducts);
-    Renderer.renderProducts(filteredProducts);
-    state.updateState(filteredProducts);
-    // DataFetcher.fetchData().then((data) => {
-    //   const filteredProducts = data.products.filter((product) => {
-    //     const productName = product.name.toLowerCase();
-    //     return productName.includes(userInput);
-    //   });
-    //   Renderer.renderProducts(filteredProducts);
-    // });
   }
 }
 
-export { FilterProductName };
+const filterProductName = new FilterProductName("#inputElement");
+
+export { filterProductName };

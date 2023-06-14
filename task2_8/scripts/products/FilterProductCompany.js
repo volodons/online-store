@@ -19,74 +19,55 @@ class FilterProductCompany {
 
     this.buttonCompanyIkea = buttonCompanyIkea;
     this.buttonCompanyIkea = document.querySelector("#buttonCompanyIkea");
-    this.buttonCompanyIkea.addEventListener(
-      "click",
-      this.getIkeaCompanyProducts
+    this.buttonCompanyIkea.addEventListener("click", () =>
+      this.getCompanyProducts("Ikea")
     );
 
     this.buttonCompanyMarcos = buttonCompanyMarcos;
     this.buttonCompanyMarcos = document.querySelector("#buttonCompanyMarcos");
-    this.buttonCompanyMarcos.addEventListener(
-      "click",
-      this.getMarcosCompanyProducts
+    this.buttonCompanyMarcos.addEventListener("click", () =>
+      this.getCompanyProducts("Marcos")
     );
 
     this.buttonCompanyCaressa = buttonCompanyCaressa;
     this.buttonCompanyCaressa = document.querySelector("#buttonCompanyCaressa");
-    this.buttonCompanyCaressa.addEventListener(
-      "click",
-      this.getCaressaCompanyProducts
+    this.buttonCompanyCaressa.addEventListener("click", () =>
+      this.getCompanyProducts("Caressa")
     );
 
     this.buttonCompanyLiddy = buttonCompanyLiddy;
     this.buttonCompanyLiddy = document.querySelector("#buttonCompanyLiddy");
-    this.buttonCompanyLiddy.addEventListener(
-      "click",
-      this.getLiddyCompanyProducts
+    this.buttonCompanyLiddy.addEventListener("click", () =>
+      this.getCompanyProducts("Liddy")
     );
+
+    this.selectedCompany = null;
   }
 
   getAllCompaniesProducts() {
+    this.selectedCompany = null;
     DataFetcher.fetchData().then((data) => {
       Renderer.renderProducts(data.products);
     });
   }
 
-  getIkeaCompanyProducts() {
+  getCompanyProducts(company) {
+    this.selectedCompany = company;
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
-        return product.company.includes("Ikea");
-      });
-      Renderer.renderProducts(filteredProducts);
-    });
-  }
-
-  getMarcosCompanyProducts() {
-    DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        return product.company.includes("Marcos");
-      });
-      Renderer.renderProducts(filteredProducts);
-    });
-  }
-
-  getCaressaCompanyProducts() {
-    DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        return product.company.includes("Caressa");
-      });
-      Renderer.renderProducts(filteredProducts);
-    });
-  }
-
-  getLiddyCompanyProducts() {
-    DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        return product.company.includes("Liddy");
+        return product.company.includes(company);
       });
       Renderer.renderProducts(filteredProducts);
     });
   }
 }
 
-export { FilterProductCompany };
+const filterProductCompany = new FilterProductCompany(
+  "#buttonAllCompanies",
+  "#buttonCompanyIkea",
+  "#buttonCompanyMarcos",
+  "#buttonCompanyCaressa",
+  "#buttonCompanyLiddy"
+);
+
+export { filterProductCompany };

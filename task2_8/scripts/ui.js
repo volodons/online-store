@@ -1,4 +1,7 @@
 import { ShoppingCart } from "./cart.js";
+import { filterProductCompany } from "./products/FilterProductCompany.js";
+import { filterProductName } from "./products/FilterProductName.js";
+import { filterProductPrice } from "./products/FilterProductPrice.js";
 
 const shoppingCart = new ShoppingCart();
 
@@ -6,6 +9,7 @@ class Renderer {
   static renderProducts(products) {
     const productsContainer = document.getElementById("productsContainer");
     productsContainer.innerHTML = "";
+    products = this.applyFilters(products);
     products.forEach((product) => {
       const productElement = document.createElement("article");
       productElement.classList.add("product");
@@ -33,6 +37,27 @@ class Renderer {
         shoppingCart.addItem(product);
       });
     });
+  }
+
+  static applyFilters(products) {
+    let filteredProducts = products;
+    if (filterProductCompany.selectedCompany !== null) {
+      filteredProducts = filteredProducts.filter((product) => {
+        return product.company.includes(filterProductCompany.selectedCompany);
+      });
+    }
+    if (filterProductName.selectedName !== null) {
+      filteredProducts = filteredProducts.filter((product) => {
+        const productName = product.name.toLowerCase();
+        return productName.includes(filterProductName.selectedName);
+      });
+    }
+    if (filterProductPrice.selectedPrice !== null) {
+      filteredProducts = filteredProducts.filter((product) => {
+        return product.price < filterProductPrice.selectedPrice;
+      });
+    }
+    return filteredProducts;
   }
 
   static renderItems(items) {

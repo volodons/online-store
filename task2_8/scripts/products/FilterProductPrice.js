@@ -11,6 +11,7 @@ class FilterProductPrice {
       300
     );
     this.rangeInput.addEventListener("input", this.debouncedGetProductsByPrice);
+    this.selectedPrice = null;
   }
 
   debounce(func, delay) {
@@ -25,6 +26,7 @@ class FilterProductPrice {
 
   getProductsByPrice() {
     const priceInput = rangeInput.value;
+    this.selectedPrice = priceInput;
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
         return product.price < priceInput;
@@ -34,4 +36,6 @@ class FilterProductPrice {
   }
 }
 
-export { FilterProductPrice };
+const filterProductPrice = new FilterProductPrice("#rangeInput", "#rangePrice");
+
+export { filterProductPrice };
