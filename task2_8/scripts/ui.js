@@ -42,7 +42,7 @@ class Renderer {
   static applyFilters(products) {
     const queryParams = new URLSearchParams(window.location.search);
     let filteredProducts = products;
-    if (filterProductCompany.selectedCompany !== null) {
+    if (filterProductCompany.selectedCompany !== "All") {
       filteredProducts = filteredProducts.filter((product) => {
         const companyFilter = queryParams.get("company");
         return companyFilter ? product.company.includes(companyFilter) : true;
@@ -58,7 +58,8 @@ class Renderer {
     }
     if (filterProductPrice.selectedPrice !== null) {
       filteredProducts = filteredProducts.filter((product) => {
-        return product.price < filterProductPrice.selectedPrice;
+        const priceFilter = queryParams.get("price");
+        return priceFilter ? product.price <= parseInt(priceFilter) : true;
       });
     }
     return filteredProducts;

@@ -6,25 +6,20 @@ class FilterProductName {
   constructor(inputElement, submitElement) {
     this.inputElement = document.querySelector(inputElement);
     this.submitElement = document.querySelector(submitElement);
-    this.debouncedGetProductByName = this.debounce(this.getProductByName, 300);
-    this.inputElement.addEventListener(
-      "input",
-      () => this.debouncedGetProductByName
-    );
     this.submitElement.addEventListener("submit", (event) =>
       this.onSubmit(event)
     );
     this.selectedName = null;
+    this.queryParams = new URLSearchParams(window.location.search);
     const nameFilter = this.queryParams.get("name");
     if (nameFilter) {
       this.selectedName = nameFilter;
-      this.inputElement.value = nameFilter;
     }
   }
 
   onSubmit(event) {
     event.preventDefault();
-    this.debouncedGetProductByName(event);
+    this.getProductByName(event);
   }
 
   debounce(func, delay) {
@@ -39,10 +34,11 @@ class FilterProductName {
 
   getProductByName(event) {
     event.preventDefault();
+    this.selectedName = this.inputElement.value.toLowerCase();
     this.updateUrlParams();
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
-        return product.company.includes(userInput);
+        return product.name.toLowerCase().includes(this.selectedName);
       });
       Renderer.renderProducts(filteredProducts);
     });

@@ -12,9 +12,8 @@ class FilterProductCompany {
   ) {
     this.buttonAllCompanies = buttonAllCompanies;
     this.buttonAllCompanies = document.querySelector("#buttonAllCompanies");
-    this.buttonAllCompanies.addEventListener(
-      "click",
-      this.getAllCompaniesProducts
+    this.buttonAllCompanies.addEventListener("click", () =>
+      this.getCompanyProducts("All")
     );
 
     this.buttonCompanyIkea = buttonCompanyIkea;
@@ -49,22 +48,23 @@ class FilterProductCompany {
     }
   }
 
-  getAllCompaniesProducts() {
-    this.selectedCompany = null;
-    DataFetcher.fetchData().then((data) => {
-      Renderer.renderProducts(data.products);
-    });
-  }
-
   getCompanyProducts(company) {
-    this.selectedCompany = company;
-    this.updateUrlParams();
-    DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        return product.company.includes(company);
+    if (company === "All") {
+      this.selectedCompany = null;
+      this.updateUrlParams();
+      DataFetcher.fetchData().then((data) => {
+        Renderer.renderProducts(data.products);
       });
-      Renderer.renderProducts(filteredProducts);
-    });
+    } else {
+      this.selectedCompany = company;
+      this.updateUrlParams();
+      DataFetcher.fetchData().then((data) => {
+        const filteredProducts = data.products.filter((product) => {
+          return product.company.includes(this.selectedCompany);
+        });
+        Renderer.renderProducts(filteredProducts);
+      });
+    }
   }
 
   updateUrlParams() {
