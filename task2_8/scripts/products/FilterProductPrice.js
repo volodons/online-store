@@ -12,6 +12,11 @@ class FilterProductPrice {
     );
     this.rangeInput.addEventListener("input", this.debouncedGetProductsByPrice);
     this.selectedPrice = null;
+    const priceFilter = this.queryParams.get("price");
+    if (priceFilter) {
+      this.selectedPrice = priceFilter;
+      this.rangeInput.value = priceFilter;
+    }
   }
 
   debounce(func, delay) {
@@ -25,14 +30,22 @@ class FilterProductPrice {
   }
 
   getProductsByPrice() {
-    const priceInput = rangeInput.value;
-    this.selectedPrice = priceInput;
+    this.updateUrlParams();
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
         return product.price < priceInput;
       });
       Renderer.renderProducts(filteredProducts);
     });
+  }
+
+  updateUrlParams() {
+    if (this.selectedPrice) {
+      this.queryParams.set("price", this.selectedPrice);
+    } else {
+      this.queryParams.delete("name");
+    }
+    window.history.replaceState(null, null, `?${this.queryParams.toString()}`);
   }
 }
 

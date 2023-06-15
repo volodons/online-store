@@ -40,16 +40,20 @@ class Renderer {
   }
 
   static applyFilters(products) {
+    const queryParams = new URLSearchParams(window.location.search);
     let filteredProducts = products;
     if (filterProductCompany.selectedCompany !== null) {
       filteredProducts = filteredProducts.filter((product) => {
-        return product.company.includes(filterProductCompany.selectedCompany);
+        const companyFilter = queryParams.get("company");
+        return companyFilter ? product.company.includes(companyFilter) : true;
       });
     }
     if (filterProductName.selectedName !== null) {
       filteredProducts = filteredProducts.filter((product) => {
-        const productName = product.name.toLowerCase();
-        return productName.includes(filterProductName.selectedName);
+        const nameFilter = queryParams.get("name");
+        return nameFilter
+          ? product.name.toLowerCase().includes(nameFilter)
+          : true;
       });
     }
     if (filterProductPrice.selectedPrice !== null) {

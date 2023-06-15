@@ -3,11 +3,28 @@ import { DataFetcher } from "../data.js";
 import { state } from "../state.js";
 
 class FilterProductName {
-  constructor(inputElement) {
+  constructor(inputElement, submitElement) {
     this.inputElement = document.querySelector(inputElement);
+    this.submitElement = document.querySelector(submitElement);
     this.debouncedGetProductByName = this.debounce(this.getProductByName, 300);
-    this.inputElement.addEventListener("input", this.debouncedGetProductByName);
+    this.inputElement.addEventListener(
+      "input",
+      () => this.debouncedGetProductByName
+    );
+    this.submitElement.addEventListener("submit", (event) =>
+      this.onSubmit(event)
+    );
     this.selectedName = null;
+    const nameFilter = this.queryParams.get("name");
+    if (nameFilter) {
+      this.selectedName = nameFilter;
+      this.inputElement.value = nameFilter;
+    }
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    this.debouncedGetProductByName(event);
   }
 
   debounce(func, delay) {
@@ -20,9 +37,9 @@ class FilterProductName {
     };
   }
 
-  getProductByName() {
-    const userInput = inputElement.value.toLowerCase();
-    this.selectedName = userInput;
+  getProductByName(event) {
+    event.preventDefault();
+    this.updateUrlParams();
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
         return product.company.includes(userInput);
@@ -30,8 +47,20 @@ class FilterProductName {
       Renderer.renderProducts(filteredProducts);
     });
   }
+
+  updateUrlParams() {
+    if (this.selectedName) {
+      this.queryParams.set("name", this.selectedName);
+    } else {
+      this.queryParams.delete("name");
+    }
+    window.history.replaceState(null, null, `?${this.queryParams.toString()}`);
+  }
 }
 
-const filterProductName = new FilterProductName("#inputElement");
+const filterProductName = new FilterProductName(
+  "#inputElement",
+  "#submitElement"
+);
 
 export { filterProductName };

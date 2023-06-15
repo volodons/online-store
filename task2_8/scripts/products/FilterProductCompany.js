@@ -42,6 +42,11 @@ class FilterProductCompany {
     );
 
     this.selectedCompany = null;
+    this.queryParams = new URLSearchParams(window.location.search);
+    const companyFilter = this.queryParams.get("company");
+    if (companyFilter) {
+      this.selectedCompany = companyFilter;
+    }
   }
 
   getAllCompaniesProducts() {
@@ -53,12 +58,22 @@ class FilterProductCompany {
 
   getCompanyProducts(company) {
     this.selectedCompany = company;
+    this.updateUrlParams();
     DataFetcher.fetchData().then((data) => {
       const filteredProducts = data.products.filter((product) => {
         return product.company.includes(company);
       });
       Renderer.renderProducts(filteredProducts);
     });
+  }
+
+  updateUrlParams() {
+    if (this.selectedCompany) {
+      this.queryParams.set("company", this.selectedCompany);
+    } else {
+      this.queryParams.delete("company");
+    }
+    window.history.replaceState(null, null, `?${this.queryParams.toString()}`);
   }
 }
 
