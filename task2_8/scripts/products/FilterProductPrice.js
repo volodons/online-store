@@ -1,12 +1,13 @@
 import { Renderer } from "../ui.js";
 import { DataFetcher } from "../data.js";
+import { debounce } from "../utils/debounce.js";
 import { state } from "../state.js";
 
 class FilterProductPrice {
   constructor(rangeInput, rangePrice) {
     this.rangeInput = document.querySelector(rangeInput);
     this.rangePrice = document.querySelector(rangePrice);
-    this.debouncedGetProductsByPrice = this.debounce(
+    this.debouncedGetProductsByPrice = debounce(
       this.getProductsByPrice.bind(this),
       300
     );
@@ -17,16 +18,6 @@ class FilterProductPrice {
     if (priceFilter) {
       this.selectedPrice = priceFilter;
     }
-  }
-
-  debounce(func, delay) {
-    let timer;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, arguments);
-      }, delay);
-    };
   }
 
   getProductsByPrice() {
