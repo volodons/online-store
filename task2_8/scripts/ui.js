@@ -1,6 +1,6 @@
 import { ShoppingCart } from "./cart.js";
-import { filterProductCompany } from "./products/FilterProductCompany.js";
 import { filterProductName } from "./products/FilterProductName.js";
+import { filterProductCompany } from "./products/FilterProductCompany.js";
 import { filterProductPrice } from "./products/FilterProductPrice.js";
 
 const shoppingCart = new ShoppingCart();
@@ -42,18 +42,18 @@ class Renderer {
   static applyFilters(products) {
     const queryParams = new URLSearchParams(window.location.search);
     let filteredProducts = products;
-    if (filterProductCompany.selectedCompany !== "All") {
-      filteredProducts = filteredProducts.filter((product) => {
-        const companyFilter = queryParams.get("company");
-        return companyFilter ? product.company.includes(companyFilter) : true;
-      });
-    }
     if (filterProductName.selectedName !== null) {
       filteredProducts = filteredProducts.filter((product) => {
         const nameFilter = queryParams.get("name");
         return nameFilter
           ? product.name.toLowerCase().includes(nameFilter)
           : true;
+      });
+    }
+    if (filterProductCompany.selectedCompany !== "All") {
+      filteredProducts = filteredProducts.filter((product) => {
+        const companyFilter = queryParams.get("company");
+        return companyFilter ? product.company.includes(companyFilter) : true;
       });
     }
     if (filterProductPrice.selectedPrice !== null) {

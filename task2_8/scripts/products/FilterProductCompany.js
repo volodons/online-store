@@ -1,6 +1,6 @@
 import { Renderer } from "../ui.js";
 import { DataFetcher } from "../data.js";
-import { state } from "../state.js";
+import { urlParamsHandler } from "../utils/UrlParamsHandler.js";
 
 class FilterProductCompany {
   constructor(
@@ -39,43 +39,27 @@ class FilterProductCompany {
     this.buttonCompanyLiddy.addEventListener("click", () =>
       this.getCompanyProducts("Liddy")
     );
-
-    this.selectedCompany = null;
-    this.queryParams = new URLSearchParams(window.location.search);
-    const companyFilter = this.queryParams.get("company");
-    if (companyFilter) {
-      this.selectedCompany = companyFilter;
-    }
   }
 
   getCompanyProducts(company) {
     if (company === "All") {
-      this.selectedCompany = null;
-      this.updateUrlParams();
+      urlParamsHandler.selectedCompany = null;
+      urlParamsHandler.updateUrlParams();
       Renderer.highlightSelectedFilter(company);
       DataFetcher.fetchData().then((data) => {
         Renderer.renderProducts(data.products);
       });
     } else {
-      this.selectedCompany = company;
-      this.updateUrlParams();
+      urlParamsHandler.selectedCompany = company;
+      urlParamsHandler.updateUrlParams();
       Renderer.highlightSelectedFilter(company);
       DataFetcher.fetchData().then((data) => {
         const filteredProducts = data.products.filter((product) => {
-          return product.company.includes(this.selectedCompany);
+          return product.company.includes(urlParamsHandler.selectedCompany);
         });
         Renderer.renderProducts(filteredProducts);
       });
     }
-  }
-
-  updateUrlParams() {
-    if (this.selectedCompany) {
-      this.queryParams.set("company", this.selectedCompany);
-    } else {
-      this.queryParams.delete("company");
-    }
-    window.history.replaceState(null, null, `?${this.queryParams.toString()}`);
   }
 }
 
