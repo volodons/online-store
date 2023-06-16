@@ -4,15 +4,15 @@ import { state } from "../state.js";
 
 class FilterProductCompany {
   constructor(
-    buttonAllCompanies,
+    buttonCompanyAll,
     buttonCompanyIkea,
     buttonCompanyMarcos,
     buttonCompanyCaressa,
     buttonCompanyLiddy
   ) {
-    this.buttonAllCompanies = buttonAllCompanies;
-    this.buttonAllCompanies = document.querySelector("#buttonAllCompanies");
-    this.buttonAllCompanies.addEventListener("click", () =>
+    this.buttonCompanyAll = buttonCompanyAll;
+    this.buttonCompanyAll = document.querySelector("#buttonCompanyAll");
+    this.buttonCompanyAll.addEventListener("click", () =>
       this.getCompanyProducts("All")
     );
 
@@ -52,12 +52,14 @@ class FilterProductCompany {
     if (company === "All") {
       this.selectedCompany = null;
       this.updateUrlParams();
+      Renderer.highlightSelectedFilter(company);
       DataFetcher.fetchData().then((data) => {
         Renderer.renderProducts(data.products);
       });
     } else {
       this.selectedCompany = company;
       this.updateUrlParams();
+      Renderer.highlightSelectedFilter(company);
       DataFetcher.fetchData().then((data) => {
         const filteredProducts = data.products.filter((product) => {
           return product.company.includes(this.selectedCompany);
@@ -78,7 +80,7 @@ class FilterProductCompany {
 }
 
 const filterProductCompany = new FilterProductCompany(
-  "#buttonAllCompanies",
+  "#buttonCompanyAll",
   "#buttonCompanyIkea",
   "#buttonCompanyMarcos",
   "#buttonCompanyCaressa",

@@ -136,6 +136,17 @@ class Renderer {
   static renderTotalItemCount(items) {
     shoppingCartItemCounter.innerText = items.length;
   }
+
+  static highlightSelectedFilter(filterValue) {
+    const filters = document.getElementsByClassName("companies-filter-button");
+    for (let i = 0; i < filters.length; i++) {
+      filters[i].classList.remove("companies-filter-button--highlighted");
+    }
+    const selectedFilter = document.getElementById(
+      `buttonCompany${filterValue}`
+    );
+    selectedFilter.classList.add("companies-filter-button--highlighted");
+  }
 }
 
 const overlayThemeToggler = document.querySelector("#overlay");

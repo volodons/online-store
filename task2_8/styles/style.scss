@@ -242,11 +242,17 @@ body {
 
 .companies-filter-button {
   margin-top: 0.5rem;
+  width: 100%;
+  text-align: left;
   border: none;
   background-color: transparent;
   color: $filter-description-color;
   font-weight: $page-font-weight;
   cursor: pointer;
+}
+
+.companies-filter-button--highlighted {
+  background-color: $filter-highlighted-color;
 }
 
 .price-filter-heading {

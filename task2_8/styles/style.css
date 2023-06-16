@@ -239,11 +239,17 @@ body {
 
 .companies-filter-button {
   margin-top: 0.5rem;
+  width: 100%;
+  text-align: left;
   border: none;
   background-color: transparent;
   color: #637f99;
   font-weight: 600;
   cursor: pointer;
+}
+
+.companies-filter-button--highlighted {
+  background-color: rgba(1, 115, 255, 0.2039215686);
 }
 
 .price-filter-heading {
