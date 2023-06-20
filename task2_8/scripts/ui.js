@@ -147,6 +147,20 @@ class Renderer {
     );
     selectedFilter.classList.add("companies-filter-button--highlighted");
   }
+
+  static setInitialFilterState(filters) {
+    if (filters.selectedName) {
+      const inputElement = document.querySelector("#inputElement");
+      inputElement.value = filters.selectedName;
+    }
+    if (filters.selectedCompany) {
+      this.highlightSelectedFilter(filters.selectedCompany);
+    }
+    if (filters.selectedPrice) {
+      rangeInput.value = parseInt(filters.selectedPrice);
+      rangePrice.innerText = parseInt(filters.selectedPrice);
+    }
+  }
 }
 
 const overlayThemeToggler = document.querySelector("#overlay");

@@ -14,7 +14,7 @@ class UrlParamsHandler {
       this.selectedCompany = companyFilter;
     }
     if (priceFilter) {
-      this.priceFilter = priceFilter;
+      this.selectedPrice = priceFilter;
     }
   }
 
