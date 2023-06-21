@@ -13,7 +13,6 @@ class FilterProductName {
 
   onSubmit(event) {
     event.preventDefault();
-    this.getProductByName(event);
   }
 
   getProductByName(event) {
