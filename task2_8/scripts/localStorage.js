@@ -14,7 +14,8 @@ class LocalStorageHandler {
   }
 
   static removeItems(localStorageKey) {
-    localStorage.removeItem(localStorageKey);
+    const localStorageKeyValue = localStorage.key(localStorageKey);
+    localStorage.removeItem(localStorageKeyValue);
   }
 }
 

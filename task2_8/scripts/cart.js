@@ -56,9 +56,9 @@ class ShoppingCart {
     for (let i = this.items.length - 1; i >= 0; i--) {
       if (this.items[i].id === itemIdToRemove) {
         this.items.splice(i, 1);
-        LocalStorageHandler.setItems("cart", this.items);
       }
     }
+    LocalStorageHandler.setItems("cart", this.items);
     itemHTML.remove();
     this.countTotalPrice(this.items);
     Renderer.renderTotalItemCount(this.items);
@@ -78,11 +78,11 @@ class ShoppingCart {
     }
   }
 
-  clearCart() {
-    this.items = [];
+  clearCart(items) {
+    items = [];
     LocalStorageHandler.removeItems("cart");
-    Renderer.renderItems(this.items);
-    Renderer.renderTotalItemCount(this.items);
+    Renderer.renderItems(items);
+    Renderer.renderTotalItemCount(items);
   }
 }
 
