@@ -78,11 +78,11 @@ class ShoppingCart {
     }
   }
 
-  clearCart(items) {
-    items = [];
+  clearCart() {
+    this.items = [];
     LocalStorageHandler.removeItems("cart");
-    Renderer.renderItems(items);
-    Renderer.renderTotalItemCount(items);
+    Renderer.renderItems(this.items);
+    Renderer.renderTotalItemCount(this.items);
   }
 }
 
