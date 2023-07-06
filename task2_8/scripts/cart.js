@@ -23,7 +23,7 @@ class ShoppingCart {
     } else {
       Renderer.renderItems(this.items);
     }
-    this.countTotalPrice(this.items);
+    this.countTotalPrice();
     Renderer.renderTotalItemCount(this.items);
   }
 
@@ -33,7 +33,7 @@ class ShoppingCart {
     itemCounter.innerText = count;
     this.items.push(item);
     LocalStorageHandler.setItems("cart", this.items);
-    this.countTotalPrice(this.items);
+    this.countTotalPrice();
     Renderer.renderTotalItemCount(this.items);
   }
 
@@ -47,7 +47,7 @@ class ShoppingCart {
     } else if (count === 1) {
       this.removeItem(item, itemIndex, itemHTML);
     }
-    this.countTotalPrice(this.items);
+    this.countTotalPrice();
     Renderer.renderTotalItemCount(this.items);
   }
 
@@ -60,21 +60,21 @@ class ShoppingCart {
     }
     LocalStorageHandler.setItems("cart", this.items);
     itemHTML.remove();
-    this.countTotalPrice(this.items);
+    this.countTotalPrice();
     Renderer.renderTotalItemCount(this.items);
   }
 
-  countTotalPrice(items) {
+  countTotalPrice() {
     let totalPrice = "0.00";
-    if (items.length === 0) {
+    if (this.items.length === 0) {
       Renderer.renderTotalPrice(totalPrice);
     } else {
       totalPrice = parseInt(totalPrice);
-      items.forEach((item) => {
+      this.items.forEach((item) => {
         totalPrice += item.price;
       });
       totalPrice = totalPrice.toFixed(2);
-      Renderer.renderTotalPrice(totalPrice);
+      Renderer.renderTotalPrice(totalPrice.toString());
     }
   }
 
