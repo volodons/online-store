@@ -182,7 +182,9 @@ buttonCloseShoppingCartContainer.addEventListener("click", () => {
   overlayThemeToggler.classList.toggle("overlay-theme");
   shoppingCartContainer.classList.toggle("shopping-cart--open");
 });
-buttonClearShoppingCart.addEventListener("click", () => shoppingCart.clearCart(shoppingCart.items));
+buttonClearShoppingCart.addEventListener("click", () =>
+  shoppingCart.clearCart(shoppingCart.items)
+);
 rangeInput.addEventListener("input", () => {
   rangePrice.innerText = rangeInput.value;
 });
