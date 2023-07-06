@@ -1,36 +1,29 @@
 class LocalStorageHandler {
   static getItems(key) {
     if (key) {
-      const localStorageKey = localStorage.key(key.toString());
-      const localStorageValueJSON = localStorage.getItem(localStorageKey);
-      const localStorageValue = JSON.parse(localStorageValueJSON);
-      return localStorageValue;
+      const valueJSON = localStorage.getItem(key);
+      const value = JSON.parse(valueJSON);
+      return value;
     }
     throw new Error("Missing key parameter");
   }
 
-  static setItems(localStorageKey, localStorageValue) {
-    if (localStorageKey && localStorageValue) {
+  static setItems(key, value) {
+    if (key && value) {
       try {
-        localStorage.setItem(
-          localStorageKey.toString(),
-          JSON.stringify(localStorageValue)
-        );
+        localStorage.setItem(key, JSON.stringify(value));
       } catch (error) {
         console.error("Failed to set item in localStorage: ", error);
       }
     }
   }
 
-  static removeItems(localStorageKey) {
-    if (localStorageKey) {
-      const localStorageKeyValue = localStorage.key(localStorageKey.toString());
-      if (localStorageKeyValue) {
-        try {
-          localStorage.removeItem(localStorageKeyValue);
-        } catch (error) {
-          console.error("Failed to remove item from localStorage: ", error);
-        }
+  static removeItems(key) {
+    if (key) {
+      try {
+        localStorage.removeItem(key);
+      } catch (error) {
+        console.error("Failed to remove item from localStorage: ", error);
       }
     }
   }
