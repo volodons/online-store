@@ -10,5 +10,5 @@ DataFetcher.fetchData().then((data) => {
   });
   Renderer.renderProducts(data.products);
 });
-Renderer.renderItems(LocalStorageHandler.getItems("cart") || []);
+Renderer.renderItems(LocalStorageHandler.getItems("cart") || {});
 Renderer.setInitialFilterState(urlParamsHandler);

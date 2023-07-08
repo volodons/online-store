@@ -68,57 +68,57 @@ class Renderer {
   static renderItems(items) {
     const itemsContainer = document.getElementById("itemsContainer");
     itemsContainer.innerHTML = "";
-    if (items.length > 0) {
-      for (let i = 0; i < items.length; i++) {
-        const itemIndex = i;
-        const item = items[itemIndex];
+    if (Object.keys(items).length > 0) {
+      for (const item of Object.values(items)) {
+        // const itemIndex = i;
+        // const item = items[itemIndex];
         const itemHTML = document.createElement("article");
         itemHTML.classList.add("shopping-cart__item");
         itemHTML.innerHTML = `
           <section class="shopping-cart__item-wrapper">
             <img
               class="shopping-cart__item-image"
-              src="${items[itemIndex].image}"
-              alt="${items[itemIndex].name}"
-              title="${items[itemIndex].name}"
+              src="${item.product.image}"
+              alt="${item.product.name}"
+              title="${item.product.name}"
             />
           <section class="shopping-cart__item-info">
-            <p class="shopping-cart__item-name">${items[itemIndex].name}</p>
-            <p class="shopping-cart__item-price">$${items[itemIndex].price}</p>
-            <button id="remove-item-button-${itemIndex}" class="shopping-cart__item-remove-button">remove</button>
+            <p class="shopping-cart__item-name">${item.product.name}</p>
+            <p class="shopping-cart__item-price">$${item.product.price}</p>
+            <button id="remove-item-button-${item.product.id}" class="shopping-cart__item-remove-button">remove</button>
           </section>
           </section>
           <section class="shopping-cart__item-count">
-            <button id="increaseItemCount-${itemIndex}" class="arrow">&#8896;</button>
-            <span id="shopping-item-counter-${itemIndex}">1</span>
-            <button id="decreaseItemCount-${itemIndex}" class="arrow">&#8897;</button>
+            <button id="increaseItemCount-${item.product.id}" class="arrow">&#8896;</button>
+            <span id="shopping-item-counter-${item.product.id}">${item.count}</span>
+            <button id="decreaseItemCount-${item.product.id}" class="arrow">&#8897;</button>
           </section>`;
         itemsContainer.append(itemHTML);
         const itemCounter = document.querySelector(
-          `#shopping-item-counter-${itemIndex}`
+          `#shopping-item-counter-${item.product.id}`
         );
         const buttonIncreaseItemCount = document.querySelector(
-          `#increaseItemCount-${itemIndex}`
+          `#increaseItemCount-${item.product.id}`
         );
         buttonIncreaseItemCount.addEventListener("click", () => {
-          shoppingCart.increaseItemCount(item, itemIndex, itemCounter);
+          shoppingCart.increaseItemCount(item, item.product.id, itemCounter);
         });
         const buttonDecreaseItemCount = document.querySelector(
-          `#decreaseItemCount-${itemIndex}`
+          `#decreaseItemCount-${item.product.id}`
         );
         buttonDecreaseItemCount.addEventListener("click", () => {
           shoppingCart.decreaseItemCount(
             item,
             itemCounter,
             itemHTML,
-            itemIndex
+            item.product.id
           );
         });
         const buttonRemoveItem = document.querySelector(
-          `#remove-item-button-${itemIndex}`
+          `#remove-item-button-${item.product.id}`
         );
         buttonRemoveItem.addEventListener("click", () =>
-          shoppingCart.removeItem(item, itemIndex, itemHTML)
+          shoppingCart.removeItem(item, item.product.id, itemHTML)
         );
       }
     }
@@ -134,7 +134,17 @@ class Renderer {
   }
 
   static renderTotalItemCount(items) {
-    shoppingCartItemCounter.innerText = items.length;
+    // shoppingCartItemCounter.innerText = items.length;
+
+    if (Object.values(items).length > 0) {
+      let totalItemCount = 0;
+      for (const item of Object.values(items)) {
+        totalItemCount += item.count;
+      }
+      shoppingCartItemCounter.innerText = totalItemCount;
+    } else {
+      shoppingCartItemCounter.innerText = 0;
+    }
   }
 
   static highlightSelectedFilter(filterValue) {
