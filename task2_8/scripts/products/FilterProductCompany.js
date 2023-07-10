@@ -10,32 +10,27 @@ class FilterProductCompany {
     buttonCompanyCaressa,
     buttonCompanyLiddy
   ) {
-    this.buttonCompanyAll = buttonCompanyAll;
-    this.buttonCompanyAll = document.querySelector("#buttonCompanyAll");
+    this.buttonCompanyAll = document.querySelector(buttonCompanyAll);
     this.buttonCompanyAll.addEventListener("click", () =>
       this.getCompanyProducts("All")
     );
 
-    this.buttonCompanyIkea = buttonCompanyIkea;
-    this.buttonCompanyIkea = document.querySelector("#buttonCompanyIkea");
+    this.buttonCompanyIkea = document.querySelector(buttonCompanyIkea);
     this.buttonCompanyIkea.addEventListener("click", () =>
       this.getCompanyProducts("Ikea")
     );
 
-    this.buttonCompanyMarcos = buttonCompanyMarcos;
-    this.buttonCompanyMarcos = document.querySelector("#buttonCompanyMarcos");
+    this.buttonCompanyMarcos = document.querySelector(buttonCompanyMarcos);
     this.buttonCompanyMarcos.addEventListener("click", () =>
       this.getCompanyProducts("Marcos")
     );
 
-    this.buttonCompanyCaressa = buttonCompanyCaressa;
-    this.buttonCompanyCaressa = document.querySelector("#buttonCompanyCaressa");
+    this.buttonCompanyCaressa = document.querySelector(buttonCompanyCaressa);
     this.buttonCompanyCaressa.addEventListener("click", () =>
       this.getCompanyProducts("Caressa")
     );
 
-    this.buttonCompanyLiddy = buttonCompanyLiddy;
-    this.buttonCompanyLiddy = document.querySelector("#buttonCompanyLiddy");
+    this.buttonCompanyLiddy = document.querySelector(buttonCompanyLiddy);
     this.buttonCompanyLiddy.addEventListener("click", () =>
       this.getCompanyProducts("Liddy")
     );
@@ -47,17 +42,25 @@ class FilterProductCompany {
       urlParamsHandler.updateUrlParams();
       Renderer.highlightSelectedFilter(company);
       DataFetcher.fetchData().then((data) => {
-        Renderer.renderProducts(data.products);
+        try {
+          Renderer.renderProducts(data.products);
+        } catch (error) {
+          console.error("Failed to get all companies products: ", error);
+        }
       });
     } else {
       urlParamsHandler.selectedCompany = company;
       urlParamsHandler.updateUrlParams();
       Renderer.highlightSelectedFilter(company);
       DataFetcher.fetchData().then((data) => {
-        const filteredProducts = data.products.filter((product) => {
-          return product.company.includes(urlParamsHandler.selectedCompany);
-        });
-        Renderer.renderProducts(filteredProducts);
+        try {
+          const filteredProducts = data.products.filter((product) => {
+            return product.company.includes(urlParamsHandler.selectedCompany);
+          });
+          Renderer.renderProducts(filteredProducts);
+        } catch (error) {
+          console.error("Failed to filter products by company: ", error);
+        }
       });
     }
   }

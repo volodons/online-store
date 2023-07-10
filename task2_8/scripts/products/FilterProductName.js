@@ -25,12 +25,16 @@ class FilterProductName {
     urlParamsHandler.selectedName = this.inputElement.value.toLowerCase();
     urlParamsHandler.updateUrlParams();
     DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        return product.name
-          .toLowerCase()
-          .includes(urlParamsHandler.selectedName);
-      });
-      Renderer.renderProducts(filteredProducts);
+      try {
+        const filteredProducts = data.products.filter((product) => {
+          return product.name
+            .toLowerCase()
+            .includes(urlParamsHandler.selectedName);
+        });
+        Renderer.renderProducts(filteredProducts);
+      } catch (error) {
+        console.error("Failed to filter products by name: ", error);
+      }
     });
   }
 }

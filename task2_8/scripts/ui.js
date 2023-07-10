@@ -1,9 +1,7 @@
-import { ShoppingCart } from "./cart.js";
+import { shoppingCart } from "./cart.js";
 import { filterProductName } from "./products/FilterProductName.js";
 import { filterProductCompany } from "./products/FilterProductCompany.js";
 import { filterProductPrice } from "./products/FilterProductPrice.js";
-
-const shoppingCart = new ShoppingCart();
 
 class Renderer {
   static renderProducts(products) {
@@ -70,8 +68,6 @@ class Renderer {
     itemsContainer.innerHTML = "";
     if (Object.keys(items).length > 0) {
       for (const item of Object.values(items)) {
-        // const itemIndex = i;
-        // const item = items[itemIndex];
         const itemHTML = document.createElement("article");
         itemHTML.classList.add("shopping-cart__item");
         itemHTML.innerHTML = `
@@ -101,29 +97,22 @@ class Renderer {
           `#increaseItemCount-${item.product.id}`
         );
         buttonIncreaseItemCount.addEventListener("click", () => {
-          shoppingCart.increaseItemCount(item, item.product.id, itemCounter);
+          shoppingCart.increaseItemCount(item.product.id);
         });
         const buttonDecreaseItemCount = document.querySelector(
           `#decreaseItemCount-${item.product.id}`
         );
         buttonDecreaseItemCount.addEventListener("click", () => {
-          shoppingCart.decreaseItemCount(
-            item,
-            itemCounter,
-            itemHTML,
-            item.product.id
-          );
+          shoppingCart.decreaseItemCount(item.product.id);
         });
         const buttonRemoveItem = document.querySelector(
           `#remove-item-button-${item.product.id}`
         );
         buttonRemoveItem.addEventListener("click", () =>
-          shoppingCart.removeItem(item, item.product.id, itemHTML)
+          shoppingCart.removeItem(item.product.id)
         );
       }
     }
-    shoppingCart.countTotalPrice(items);
-    this.renderTotalItemCount(items);
   }
 
   static renderTotalPrice(totalPrice) {
@@ -134,17 +123,13 @@ class Renderer {
   }
 
   static renderTotalItemCount(items) {
-    // shoppingCartItemCounter.innerText = items.length;
-
-    if (Object.values(items).length > 0) {
-      let totalItemCount = 0;
+    let totalItemCount = 0;
+    if (Object.keys(items).length > 0) {
       for (const item of Object.values(items)) {
         totalItemCount += item.count;
       }
-      shoppingCartItemCounter.innerText = totalItemCount;
-    } else {
-      shoppingCartItemCounter.innerText = 0;
     }
+    shoppingCartItemCounter.innerText = totalItemCount;
   }
 
   static highlightSelectedFilter(filterValue) {
@@ -199,4 +184,4 @@ rangeInput.addEventListener("input", () => {
   rangePrice.innerText = rangeInput.value;
 });
 
-export { Renderer };
+export { Renderer, shoppingCart };

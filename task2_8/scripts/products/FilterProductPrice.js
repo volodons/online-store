@@ -18,10 +18,14 @@ class FilterProductPrice {
     urlParamsHandler.selectedPrice = this.rangeInput.value;
     urlParamsHandler.updateUrlParams();
     DataFetcher.fetchData().then((data) => {
-      const filteredProducts = data.products.filter((product) => {
-        return product.price <= parseInt(urlParamsHandler.selectedPrice);
-      });
-      Renderer.renderProducts(filteredProducts);
+      try {
+        const filteredProducts = data.products.filter((product) => {
+          return product.price <= parseInt(urlParamsHandler.selectedPrice);
+        });
+        Renderer.renderProducts(filteredProducts);
+      } catch (error) {
+        console.error("Failed to filter products by price: ", error);
+      }
     });
   }
 }
