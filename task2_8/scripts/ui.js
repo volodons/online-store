@@ -184,4 +184,4 @@ rangeInput.addEventListener("input", () => {
   rangePrice.innerText = rangeInput.value;
 });
 
-export { Renderer, shoppingCart };
+export { Renderer };
