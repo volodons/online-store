@@ -4,7 +4,7 @@ import { DataFetcher } from "./data.js";
 import { shoppingCart } from "./cart.js";
 import { urlParamsHandler } from "./utils/UrlParamsHandler.js";
 
-function initializeApp() {
+function startApp() {
   try {
     DataFetcher.fetchData().then((data) => {
       Renderer.renderProducts(data.products);
@@ -22,4 +22,4 @@ function initializeApp() {
   }
 }
 
-initializeApp();
+startApp();
