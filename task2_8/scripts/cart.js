@@ -63,7 +63,7 @@ class ShoppingCart {
 
   clearCart() {
     this.items = {};
-    LocalStorageHandler.removeItems("cart");
+    LocalStorageHandler.removeLocalStorageItem("cart");
     Renderer.renderItems(this.items);
     Renderer.renderTotalItemCount(this.items);
     this.countTotalPrice();
