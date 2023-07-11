@@ -90,9 +90,6 @@ class Renderer {
             <button id="decreaseItemCount-${item.product.id}" class="arrow">&#8897;</button>
           </section>`;
         itemsContainer.append(itemHTML);
-        const itemCounter = document.querySelector(
-          `#shopping-item-counter-${item.product.id}`
-        );
         const buttonIncreaseItemCount = document.querySelector(
           `#increaseItemCount-${item.product.id}`
         );
